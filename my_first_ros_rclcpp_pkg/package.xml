@@ -3,7 +3,7 @@
 <package format="3">
   <name>my_first_ros_rclcpp_pkg</name>
   <version>0.0.1</version>
-  <description>ROS 2 example packages for the ROS 2 seminar</description>
+  <description>ROS 2 rclcpp basic package for the ROS 2 seminar</description>
   <maintainer email="pyo@robotis.com">Pyo</maintainer>
   <license>Apache License 2.0</license>
   <author>Mikael Arguedas</author>
