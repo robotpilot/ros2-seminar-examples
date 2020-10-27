@@ -2,10 +2,12 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>my_first_ros_rclpy_pkg</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="pyo@robotis.com">pyo</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.0.2</version>
+  <description>ROS 2 example packages for the ROS 2 seminar</description>
+  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <license>Apache License 2.0</license>
+  <author email="mikael@osrfoundation.org">Mikael Arguedas</author>
+  <author email="pyo@robotis.com">Pyo</author>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
