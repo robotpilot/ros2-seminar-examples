@@ -16,7 +16,7 @@ jobs:
     - uses: ros-tooling/setup-ros@0.0.25
     - uses: ros-tooling/action-ros-lint@0.0.6
       with:
-        distribution: foxy
+        distribution: dashing
         linter: ${{ matrix.linter }}
         package-name: |
           my_first_ros_rclcpp_pkg
