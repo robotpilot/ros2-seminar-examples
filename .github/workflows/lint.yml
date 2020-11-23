@@ -1,0 +1,22 @@
+name: Lint
+
+on:
+  pull_request:
+    
+jobs:
+  ament_lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+          linter: [cppcheck, cpplint, uncrustify, pep8, pep257, xmllint, flake8]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ros-tooling/setup-ros@0.0.25
+    - uses: ros-tooling/action-ros-lint@0.0.6
+      with:
+        distribution: foxy
+        linter: ${{ matrix.linter }}
+        package-name: |
+          my_first_ros_rclcpp_pkg
+          my_first_ros_rclpy_pkg
