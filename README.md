@@ -1,5 +1,8 @@
 # ros2-seminar-examples
 
+## GitHub Action for ROS Lint
+- `.github/workflows/lint.yml`
+
 ## Build
 ```
 $ cd ~/robot_ws && colcon build --symlink-install
