@@ -1,0 +1,8 @@
+# Goal
+int32 goal_sum
+---
+# Result
+string[] final_result
+---
+# Feedback
+string[] operation_process

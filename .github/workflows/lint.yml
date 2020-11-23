@@ -2,7 +2,7 @@ name: Lint
 
 on:
   pull_request:
-    
+
 jobs:
   ament_lint:
     runs-on: ubuntu-latest
@@ -20,3 +20,4 @@ jobs:
         package-name: |
           my_first_ros_rclcpp_pkg
           my_first_ros_rclpy_pkg
+          msg_srv_action_interface_example
