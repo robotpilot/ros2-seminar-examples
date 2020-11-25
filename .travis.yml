@@ -1,0 +1,24 @@
+services:
+  - docker
+
+language:
+  - none
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+    recipients:
+      - pyo@robotis.com
+
+branches:
+  only:
+    - master
+    - develop
+
+install:
+  - git clone --quiet --depth 1 https://github.com/robotpilot/ros2ci.git .ros2ci
+
+matrix:
+  include:
+    - script: .ros2ci/travis.bash foxy
