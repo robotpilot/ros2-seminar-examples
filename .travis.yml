@@ -1,8 +1,14 @@
-services:
-  - docker
-
 language:
   - generic
+
+os:
+  - linux
+
+dist:
+  - xenial
+
+services:
+  - docker
 
 notifications:
   email:
@@ -19,6 +25,6 @@ branches:
 install:
   - git clone --quiet --depth 1 https://github.com/robotpilot/ros2ci.git .ros2ci
 
-matrix:
+jobs:
   include:
     - script: .ros2ci/travis.bash foxy
