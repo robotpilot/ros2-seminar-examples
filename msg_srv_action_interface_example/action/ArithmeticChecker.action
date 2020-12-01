@@ -1,8 +1,9 @@
 # Goal
-int32 goal_sum
+float32 goal_sum
 ---
 # Result
-string[] final_result
+string[] all_formula
+float32 total_sum
 ---
 # Feedback
-string[] operation_process
+string[] formula
