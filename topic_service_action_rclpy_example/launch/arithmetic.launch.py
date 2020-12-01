@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# Copyright 2020 ROBOTIS CO., LTD.
-# Authors: Pyo
 
 import os
 
