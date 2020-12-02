@@ -50,6 +50,7 @@ class Argument(Node):
 
     def publish_random_arithmetic_arguments(self):
         msg = ArithmeticArgument()
+        msg.stamp = self.get_clock().now().to_msg()
         msg.argument_a = float(random.randint(self.min_random_num, self.max_random_num))
         msg.argument_b = float(random.randint(self.min_random_num, self.max_random_num))
         self.arithmetic_argument_publisher.publish(msg)
