@@ -13,10 +13,10 @@ jobs:
     steps:
     - run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
     - uses: actions/checkout@v2
-    - uses: ros-tooling/setup-ros@0.0.25
+    - uses: ros-tooling/setup-ros@0.1.0
     - uses: ros-tooling/action-ros-lint@0.0.6
       with:
-        distribution: dashing
+        distribution: foxy
         linter: ${{ matrix.linter }}
         package-name: |
           my_first_ros_rclcpp_pkg
