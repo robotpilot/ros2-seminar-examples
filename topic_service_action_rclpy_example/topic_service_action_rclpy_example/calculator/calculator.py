@@ -14,6 +14,9 @@
 
 import time
 
+from msg_srv_action_interface_example.action import ArithmeticChecker
+from msg_srv_action_interface_example.msg import ArithmeticArgument
+from msg_srv_action_interface_example.srv import ArithmeticOperator
 from rclpy.action import ActionServer
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.node import Node
@@ -21,10 +24,6 @@ from rclpy.qos import QoSDurabilityPolicy
 from rclpy.qos import QoSHistoryPolicy
 from rclpy.qos import QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
-
-from msg_srv_action_interface_example.action import ArithmeticChecker
-from msg_srv_action_interface_example.msg import ArithmeticArgument
-from msg_srv_action_interface_example.srv import ArithmeticOperator
 
 
 class Calculator(Node):

@@ -14,14 +14,13 @@
 
 import random
 
+from msg_srv_action_interface_example.msg import ArithmeticArgument
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSDurabilityPolicy
 from rclpy.qos import QoSHistoryPolicy
 from rclpy.qos import QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
-
-from msg_srv_action_interface_example.msg import ArithmeticArgument
 
 
 class Argument(Node):

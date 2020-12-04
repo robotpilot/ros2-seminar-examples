@@ -14,10 +14,9 @@
 
 import random
 
+from msg_srv_action_interface_example.srv import ArithmeticOperator
 import rclpy
 from rclpy.node import Node
-
-from msg_srv_action_interface_example.srv import ArithmeticOperator
 
 
 class Operator(Node):
