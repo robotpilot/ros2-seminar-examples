@@ -9,16 +9,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          linter: [cppcheck, cpplint, uncrustify, pep8, pep257, xmllint, flake8]
+          linter: [cppcheck, cpplint, uncrustify, pep257, xmllint, flake8]
     steps:
-    - run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
     - uses: actions/checkout@v2
-    - uses: ros-tooling/setup-ros@0.0.25
+    - uses: ros-tooling/setup-ros@0.1.0
     - uses: ros-tooling/action-ros-lint@0.0.6
       with:
-        distribution: dashing
+        distribution: foxy
         linter: ${{ matrix.linter }}
         package-name: |
           my_first_ros_rclcpp_pkg
           my_first_ros_rclpy_pkg
           msg_srv_action_interface_example
+          topic_service_action_rclpy_example

@@ -14,6 +14,9 @@
 
 import time
 
+from msg_srv_action_interface_example.action import ArithmeticChecker
+from msg_srv_action_interface_example.msg import ArithmeticArgument
+from msg_srv_action_interface_example.srv import ArithmeticOperator
 from rclpy.action import ActionServer
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.node import Node
@@ -21,10 +24,6 @@ from rclpy.qos import QoSDurabilityPolicy
 from rclpy.qos import QoSHistoryPolicy
 from rclpy.qos import QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
-
-from msg_srv_action_interface_example.action import ArithmeticChecker
-from msg_srv_action_interface_example.msg import ArithmeticArgument
-from msg_srv_action_interface_example.srv import ArithmeticOperator
 
 
 class Calculator(Node):
@@ -71,6 +70,7 @@ class Calculator(Node):
     def get_arithmetic_argument(self, msg):
         self.argument_a = msg.argument_a
         self.argument_b = msg.argument_b
+        self.get_logger().info('Subscribed at: {0}'.format(msg.stamp))
         self.get_logger().info('Subscribed argument a: {0}'.format(self.argument_a))
         self.get_logger().info('Subscribed argument b: {0}'.format(self.argument_b))
 

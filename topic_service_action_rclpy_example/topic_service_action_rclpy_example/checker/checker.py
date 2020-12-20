@@ -13,10 +13,9 @@
 # limitations under the License.
 
 from action_msgs.msg import GoalStatus
+from msg_srv_action_interface_example.action import ArithmeticChecker
 from rclpy.action import ActionClient
 from rclpy.node import Node
-
-from msg_srv_action_interface_example.action import ArithmeticChecker
 
 
 class Checker(Node):
