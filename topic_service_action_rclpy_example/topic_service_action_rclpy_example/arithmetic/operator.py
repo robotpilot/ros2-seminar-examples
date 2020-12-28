@@ -23,39 +23,41 @@ class Operator(Node):
 
     def __init__(self):
         super().__init__('operator')
+
         self.arithmetic_service_client = self.create_client(
             ArithmeticOperator,
             'arithmetic_operator')
+
+        while not self.arithmetic_service_client.wait_for_service(timeout_sec=0.1):
+            self.get_logger().warning('The arithmetic_operator service not available.')
+
+        self.client_futures = []
         self.request = ArithmeticOperator.Request()
         self.timer = self.create_timer(1.0, self.send_request)
 
     def send_request(self):
-        while not self.arithmetic_service_client.wait_for_service(timeout_sec=0.1):
-            self.get_logger().warning('The arithmetic_operator service not available.')
         self.request.arithmetic_operator = random.randint(1, 4)
-        self.future = self.arithmetic_service_client.call_async(self.request)
+        self.client_futures.append(self.arithmetic_service_client.call_async(self.request))
 
 
 def main(args=None):
     rclpy.init(args=args)
-    try:
-        operator = Operator()
-        try:
-            while rclpy.ok():
-                rclpy.spin_once(operator)
-                if operator.future.done():
-                    try:
-                        response = operator.future.result()
-                    except Exception as e:
-                        operator.get_logger().info('Service call failed {}'.format(e))
-                    else:
-                        operator.get_logger().info('Result: {}'.format(response.arithmetic_result))
-        except KeyboardInterrupt:
-            operator.get_logger().info('Keyboard Interrupt (SIGINT)')
-        finally:
-            operator.destroy_node()
-    finally:
-        rclpy.shutdown()
+
+    operator = Operator()
+
+    while rclpy.ok():
+        rclpy.spin_once(operator)
+        incomplete_futures = []
+        for future in operator.client_futures:
+            if future.done():
+                response = future.result()
+                operator.get_logger().info('Result: {}'.format(response.arithmetic_result))
+            else:
+                incomplete_futures.append(future)
+        operator.client_futures = incomplete_futures
+
+    operator.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == '__main__':
