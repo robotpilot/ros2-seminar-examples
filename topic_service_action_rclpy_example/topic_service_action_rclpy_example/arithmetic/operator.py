@@ -45,16 +45,19 @@ def main(args=None):
 
     operator = Operator()
 
-    while rclpy.ok():
-        rclpy.spin_once(operator)
-        incomplete_futures = []
-        for future in operator.client_futures:
-            if future.done():
-                response = future.result()
-                operator.get_logger().info('Result: {}'.format(response.arithmetic_result))
-            else:
-                incomplete_futures.append(future)
-        operator.client_futures = incomplete_futures
+    try:
+        while rclpy.ok():
+            rclpy.spin_once(operator)
+            incomplete_futures = []
+            for future in operator.client_futures:
+                if future.done():
+                    response = future.result()
+                    operator.get_logger().info('Result: {}'.format(response.arithmetic_result))
+                else:
+                    incomplete_futures.append(future)
+            operator.client_futures = incomplete_futures
+    except KeyboardInterrupt:
+        operator.get_logger().info('Keyboard Interrupt (SIGINT)')
 
     operator.destroy_node()
     rclpy.shutdown()
