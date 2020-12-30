@@ -25,15 +25,15 @@ def generate_launch_description():
 
         Node(
             package='topic_service_action_rclpy_example',
-            node_executable='argument',
-            node_name='argument',
+            executable='argument',
+            name='argument',
             parameters=[param_dir],
             output='screen'),
 
         Node(
             package='topic_service_action_rclpy_example',
-            node_executable='calculator',
-            node_name='calculator',
+            executable='calculator',
+            name='calculator',
             parameters=[param_dir],
             output='screen'),
     ])
