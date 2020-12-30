@@ -10,7 +10,6 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    # ros_namespace = LaunchConfiguration('ros_namespace')
     param_dir = LaunchConfiguration(
         'param_dir',
         default=os.path.join(
@@ -19,18 +18,12 @@ def generate_launch_description():
             'arithmetic_config.yaml'))
 
     return LaunchDescription([
-        # DeclareLaunchArgument(
-        #     'ros_namespace',
-        #     default_value=os.environ['ROS_NAMESPACE'],
-        #     description='Namespace for the robot'),
-
         DeclareLaunchArgument(
             'param_dir',
             default_value=param_dir,
             description='Full path of parameter file'),
 
         Node(
-            # node_namespace=ros_namespace,
             package='topic_service_action_rclpy_example',
             node_executable='argument',
             node_name='argument',
@@ -38,7 +31,6 @@ def generate_launch_description():
             output='screen'),
 
         Node(
-            # node_namespace=ros_namespace,
             package='topic_service_action_rclpy_example',
             node_executable='calculator',
             node_name='calculator',
