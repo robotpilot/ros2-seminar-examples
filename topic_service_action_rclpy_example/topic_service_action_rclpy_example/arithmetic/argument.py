@@ -35,7 +35,7 @@ class Argument(Node):
         self.min_random_num = self.get_parameter('min_random_num').value
         self.declare_parameter('max_random_num', 9)
         self.max_random_num = self.get_parameter('max_random_num').value
-        self.set_parameters_callback(self.update_parameter)
+        self.add_on_set_parameters_callback(self.update_parameter)
 
         QOS_RKL10V = QoSProfile(
             reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_RELIABLE,
