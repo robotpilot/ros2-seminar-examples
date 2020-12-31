@@ -33,7 +33,6 @@ class Operator(Node):
 
         self.client_futures = []
         self.request = ArithmeticOperator.Request()
-        self.timer = self.create_timer(1.0, self.send_request)
 
     def send_request(self):
         self.request.arithmetic_operator = random.randint(1, 4)
@@ -44,6 +43,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     operator = Operator()
+    operator.send_request()
 
     try:
         while rclpy.ok():
