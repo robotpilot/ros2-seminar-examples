@@ -17,12 +17,91 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include <random>
 
 #include "rclcpp/rclcpp.hpp"
 #include "rcutils/cmdline_parser.h"
 
 #include "arithmetic/argument.hpp"
 
+using namespace std::chrono_literals;
+
+Argument::Argument()
+: Node("argument"),
+  min_random_num_(0.0),
+  max_random_num_(0.0)
+{
+  this->declare_parameter("qos_depth", 10);
+  int8_t qos_depth = this->get_parameter("qos_depth").get_value<int8_t>();
+  this->declare_parameter("min_random_num", 0.0);
+  min_random_num_ = this->get_parameter("min_random_num").get_value<float>();
+  this->declare_parameter("max_random_num", 9.0);
+  max_random_num_ = this->get_parameter("max_random_num").get_value<float>();
+  this->update_parameter();
+
+  const auto QOS_RKL10V
+    = rclcpp::QoS(rclcpp::KeepLast(qos_depth))
+      .reliable()
+      .durability_volatile();
+
+  arithmetic_argument_publisher_ =
+    this->create_publisher<msg_srv_action_interface_example::msg::ArithmeticArgument>("arithmetic_argument", QOS_RKL10V);
+
+  timer_ = this->create_wall_timer(1s, std::bind(&Argument::publish_random_arighmetic_arguments, this));
+}
+
+Argument::~Argument()
+{
+
+}
+
+void Argument::publish_random_arighmetic_arguments()
+{
+  msg_srv_action_interface_example::msg::ArithmeticArgument msg;
+  msg.stamp = this->now();
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_real_distribution<float> distribution(min_random_num_, max_random_num_);
+  msg.argument_a = distribution(gen);
+  msg.argument_b = distribution(gen);
+  arithmetic_argument_publisher_->publish(msg);
+  RCLCPP_INFO(this->get_logger(), "Published argument_a %.2f", msg.argument_a);
+  RCLCPP_INFO(this->get_logger(), "Published argument_b %.2f", msg.argument_b);
+}
+
+void Argument::update_parameter()
+{
+  parameters_client_ = std::make_shared<rclcpp::AsyncParametersClient>(this);
+  while (!parameters_client_->wait_for_service(1s))
+  {
+    if (!rclcpp::ok())
+    {
+      RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+      return;
+    }
+    RCLCPP_INFO(this->get_logger(), "service not available, waiting again...");
+  }
+
+  auto param_event_callback =
+    [this](const rcl_interfaces::msg::ParameterEvent::SharedPtr event) -> void
+      {
+        for (auto & changed_parameter : event->changed_parameters)
+        {
+          if (changed_parameter.name == "min_random_num")
+          {
+            auto value = rclcpp::Parameter::from_parameter_msg(changed_parameter).as_double();
+            min_random_num_ = value;
+          }
+          else if (changed_parameter.name == "max_random_num")
+          {
+            auto value = rclcpp::Parameter::from_parameter_msg(changed_parameter).as_double();
+            max_random_num_ = value;
+          }
+        }
+      };
+
+  parameter_event_sub_ = parameters_client_->on_parameter_event(param_event_callback);
+}
 
 void print_help()
 {
