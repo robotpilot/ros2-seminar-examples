@@ -108,7 +108,7 @@ float Calculator::calculate_given_formula(const float & a, const float & b, cons
   } else if (operators == arithmetic_operator.DIVISION) {
     argument_result = a / b;
     if (b == 0.0) {
-      throw "ZeroDivisionError!";
+      RCLCPP_ERROR(this->get_logger(), "ZeroDivisionError!");
       argument_result = 0.0;
       return argument_result;
     }
@@ -138,7 +138,6 @@ void Calculator::execute_checker(const std::shared_ptr<rclcpp_action::ServerGoal
 {
   RCLCPP_INFO(this->get_logger(), "Execute arithmetic_checker action!");
   rclcpp::Rate loop_rate(1);
-  // const auto goal = goal_handle->get_goal();
   auto feedback_msg = std::make_shared<msg_srv_action_interface_example::action::ArithmeticChecker::Feedback>();
   float total_sum = 0.0;
   float goal_sum = goal_handle->get_goal()->goal_sum;
