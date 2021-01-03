@@ -25,8 +25,8 @@
 
 void print_help()
 {
-  printf("For ROS 2 topic, service rclcpp examples:\n");
-  printf("publisher [-h]\n");
+  printf("For ROS 2 topic subscriber, service server, action server rclcpp examples:\n");
+  printf("calculator [-h]\n");
   printf("Options:\n");
   printf("\t-h Help           : Print this help function.\n");
 }
@@ -44,10 +44,7 @@ int main(int argc, char * argv[])
 
   auto calculator = std::make_shared<Calculator>();
 
-  rclcpp::executors::MultiThreadedExecutor executor;
-
-  executor.add_node(calculator);
-  executor.spin();
+  rclcpp::spin(calculator);
 
   rclcpp::shutdown();
 
