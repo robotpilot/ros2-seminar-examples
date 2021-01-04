@@ -81,9 +81,9 @@ int main(int argc, char * argv[])
 
   rclcpp::init(argc, argv);
 
-  auto operators = std::make_shared<Operator>();
+  auto operator_node = std::make_shared<Operator>();
 
-  rclcpp::spin(operators);
+  rclcpp::spin(operator_node);
 
   rclcpp::shutdown();
 
