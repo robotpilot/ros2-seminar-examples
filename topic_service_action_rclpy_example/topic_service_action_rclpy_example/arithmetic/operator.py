@@ -45,7 +45,7 @@ def main(args=None):
     user_trigger = True
     try:
         while rclpy.ok():
-            if user_trigger == True:
+            if user_trigger is True:
                 rclpy.spin_once(operator)
                 if future.done():
                     try:
