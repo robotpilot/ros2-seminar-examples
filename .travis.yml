@@ -16,6 +16,7 @@ notifications:
     on_failure: always
     recipients:
       - pyo@robotis.com
+      - thlim@robotis.com
 
 branches:
   only:
