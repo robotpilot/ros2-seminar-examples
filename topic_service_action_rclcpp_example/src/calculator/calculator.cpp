@@ -146,7 +146,7 @@ void Calculator::execute_checker(const std::shared_ptr<rclcpp_action::ServerGoal
     feedback_msg->formula.push_back(argument_formula_);
     RCLCPP_INFO(this->get_logger(), "Feedback: ");
     for (const auto & formula : feedback_msg->formula) {
-      RCLCPP_INFO(this->get_logger(), "\t%s ", formula.c_str());
+      RCLCPP_INFO(this->get_logger(), "\t%s", formula.c_str());
     }
     goal_handle->publish_feedback(feedback_msg);
   }
