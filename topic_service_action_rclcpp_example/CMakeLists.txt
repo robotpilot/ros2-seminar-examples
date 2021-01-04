@@ -19,35 +19,43 @@ endif()
 # Find and load build settings from external packages
 ################################################################################
 find_package(ament_cmake REQUIRED)
+find_package(msg_srv_action_interface_example REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
-find_package(msg_srv_action_interface_example REQUIRED)
 
 include_directories(include)
 
+add_executable(argument src/arithmetic/argument.cpp)
+ament_target_dependencies(argument
+  msg_srv_action_interface_example
+  rclcpp
+)
+
 add_executable(calculator src/calculator/main.cpp src/calculator/calculator.cpp)
 ament_target_dependencies(calculator
+  msg_srv_action_interface_example
   rclcpp
   rclcpp_action
+)
+
+add_executable(checker src/checker/main.cpp src/checker/checker.cpp)
+ament_target_dependencies(checker
   msg_srv_action_interface_example
+  rclcpp
+  rclcpp_action
 )
 
 add_executable(operator src/arithmetic/operator.cpp)
 ament_target_dependencies(operator
-  rclcpp
   msg_srv_action_interface_example
-)
-
-add_executable(argument src/arithmetic/argument.cpp)
-ament_target_dependencies(argument
   rclcpp
-  msg_srv_action_interface_example
 )
 
 install(TARGETS
-  calculator
-  operator
   argument
+  calculator
+  checker
+  operator
   DESTINATION lib/${PROJECT_NAME}
 )
 
