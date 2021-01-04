@@ -15,9 +15,9 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     author='Mikael Arguedas, Pyo',
-    author_email='mikael@osrfoundation.org, pyo@robotis.com',
+    author_email='mikael@osrfoundation.org, passionvirus@gmail.com',
     maintainer='Pyo',
-    maintainer_email='pyo@robotis.com',
+    maintainer_email='passionvirus@gmail.com',
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',

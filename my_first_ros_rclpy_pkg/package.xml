@@ -4,10 +4,10 @@
   <name>my_first_ros_rclpy_pkg</name>
   <version>0.0.2</version>
   <description>ROS 2 rclpy basic package for the ROS 2 seminar</description>
-  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
   <license>Apache License 2.0</license>
   <author email="mikael@osrfoundation.org">Mikael Arguedas</author>
-  <author email="pyo@robotis.com">Pyo</author>
+  <author email="passionvirus@gmail.com">Pyo</author>
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
   <test_depend>ament_copyright</test_depend>
