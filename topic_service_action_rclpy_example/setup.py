@@ -22,9 +22,9 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     author='Pyo, Darby Lim',
-    author_email='pyo@robotis.com, thlim@robotis.com',
+    author_email='passionvirus@gmail.com, routiful@gmail.com',
     maintainer='Pyo',
-    maintainer_email='pyo@robotis.com',
+    maintainer_email='passionvirus@gmail.com',
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',

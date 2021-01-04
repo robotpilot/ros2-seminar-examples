@@ -6,10 +6,10 @@
   <description>
     ROS 2 example for message, service and action interface
   </description>
-  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
   <license>Apache 2.0</license>
-  <author email="pyo@robotis.com">Pyo</author>
-  <author email="thlim@robotis.com">Darby Lim</author>
+  <author email="passionvirus@gmail.com">Pyo</author>
+  <author email="routiful@gmail.com">Darby Lim</author>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
   <exec_depend>builtin_interfaces</exec_depend>
