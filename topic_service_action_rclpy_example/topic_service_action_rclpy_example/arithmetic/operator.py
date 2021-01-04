@@ -57,7 +57,7 @@ def main(args=None):
                             'Result: {}'.format(service_response.arithmetic_result))
                         user_trigger = False
             else:
-                input("Press Enter for next service call.")
+                input('Press Enter for next service call.')
                 future = operator.send_request()
                 user_trigger = True
 
