@@ -42,14 +42,13 @@ int main(int argc, char * argv[])
 
   rclcpp::init(argc, argv);
 
-  char * cli_option = nullptr;
-
-  auto goal_total_sum = 50;
-  cli_option = rcutils_cli_get_option(argv, argv + argc, "-g");
+  float goal_total_sum = 50.0;
+  char * cli_option = rcutils_cli_get_option(argv, argv + argc, "-g");
   if (nullptr != cli_option)
   {
-    goal_total_sum = static_cast<float>(*cli_option);
+    goal_total_sum = std::stof(cli_option);
   }
+  printf("goal_total_sum : %2.f\n", goal_total_sum);
 
   auto checker = std::make_shared<Checker>(goal_total_sum);
 
