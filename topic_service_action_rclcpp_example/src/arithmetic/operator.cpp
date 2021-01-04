@@ -27,8 +27,8 @@
 using namespace std::chrono_literals;
 
 
-Operator::Operator()
-: Node("operator")
+Operator::Operator(const rclcpp::NodeOptions & node_options)
+: Node("operator", node_options)
 {
   arithmetic_service_client_ = this->create_client<msg_srv_action_interface_example::srv::ArithmeticOperator>("arithmetic_operator");
   while (!arithmetic_service_client_->wait_for_service(1s))

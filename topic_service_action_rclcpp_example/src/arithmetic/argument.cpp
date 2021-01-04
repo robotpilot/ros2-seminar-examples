@@ -26,8 +26,8 @@
 
 using namespace std::chrono_literals;
 
-Argument::Argument()
-: Node("argument"),
+Argument::Argument(const rclcpp::NodeOptions & node_options)
+: Node("argument", node_options),
   min_random_num_(0.0),
   max_random_num_(0.0)
 {

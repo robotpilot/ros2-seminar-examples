@@ -35,7 +35,7 @@
 class Calculator : public rclcpp::Node
 {
  public:
-  Calculator();
+  explicit Calculator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Calculator();
 
  private:

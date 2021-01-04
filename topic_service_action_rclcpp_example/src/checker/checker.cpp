@@ -75,6 +75,7 @@ void Checker::get_arithmetic_action_feedback(
   rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr,
   const std::shared_ptr<const msg_srv_action_interface_example::action::ArithmeticChecker::Feedback> feedback)
 {
+  RCLCPP_INFO(this->get_logger(), "Action feedback: ");
   for (const auto & formula : feedback->formula) {
     RCLCPP_INFO(this->get_logger(), "\t%s ", formula.c_str());
   }
@@ -103,4 +104,5 @@ void Checker::get_arithmetic_action_result(
       RCLCPP_ERROR(this->get_logger(), "Unknown result code");
       return;
   }
+  rclcpp::shutdown();
 }

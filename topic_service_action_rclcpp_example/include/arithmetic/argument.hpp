@@ -30,7 +30,7 @@
 class Argument : public rclcpp::Node
 {
  public:
-  Argument();
+  explicit Argument(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Argument();
 
  private:

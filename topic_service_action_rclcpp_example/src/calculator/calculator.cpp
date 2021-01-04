@@ -23,14 +23,16 @@
 #include "calculator/calculator.hpp"
 
 
-Calculator::Calculator()
-: Node("calculator"),
+Calculator::Calculator(const rclcpp::NodeOptions & node_options)
+: Node("calculator", node_options),
   argument_a_(0.0),
   argument_b_(0.0),
   argument_operator_(0),
   argument_result_(0.0),
   argument_formula_("")
 {
+  RCLCPP_INFO(this->get_logger(), "Run calculator");
+
   operator_.reserve(4);
   operator_.push_back("+");
   operator_.push_back("-");
@@ -144,11 +146,16 @@ void Calculator::execute_checker(const std::shared_ptr<rclcpp_action::ServerGoal
   while ((total_sum < goal_sum) && rclcpp::ok()) {
     total_sum += argument_result_;
     feedback_msg->formula.push_back(argument_formula_);
+    if (argument_formula_.empty()) {
+      RCLCPP_WARN(this->get_logger(), "Please check your formula");
+      break;
+    }
     RCLCPP_INFO(this->get_logger(), "Feedback: ");
     for (const auto & formula : feedback_msg->formula) {
       RCLCPP_INFO(this->get_logger(), "\t%s", formula.c_str());
     }
     goal_handle->publish_feedback(feedback_msg);
+    loop_rate.sleep();
   }
 
   if (rclcpp::ok()) {

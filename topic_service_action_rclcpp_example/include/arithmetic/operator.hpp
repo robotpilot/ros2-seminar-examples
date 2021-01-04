@@ -30,7 +30,7 @@
 class Operator : public rclcpp::Node
 {
  public:
-  Operator();
+  explicit Operator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Operator();
 
  private:
