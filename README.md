@@ -1,7 +1,13 @@
-# ros2-seminar-examples
+# ROS 2 example packages for the ROS 2 seminar
+
+## ROS 2 online seminar
+- https://cafe.naver.com/openrt/24070
 
 ## GitHub Action for ROS Lint
 - `.github/workflows/lint.yml`
+
+## Travis option for CI
+- `.travis.yml`
 
 ## Build
 ```
@@ -37,7 +43,7 @@ $ ros2 run topic_service_action_rclpy_example argument
 ```
 $ ros2 run topic_service_action_rclpy_example operator
 ```
-### Topic subscriber, Service Server, Action Server (calculator node)
+### Topic Subscriber, Service Server, Action Server (calculator node)
 ```
 $ ros2 run topic_service_action_rclpy_example calculator
 ```
@@ -62,7 +68,7 @@ $ ros2 run topic_service_action_rclcpp_example argument
 ```
 $ ros2 run topic_service_action_rclcpp_example operator
 ```
-### Topic subscriber, Service Server, Action Server (calculator node)
+### Topic Subscriber, Service Server, Action Server (calculator node)
 ```
 $ ros2 run topic_service_action_rclcpp_example calculator
 ```
