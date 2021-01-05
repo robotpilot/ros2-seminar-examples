@@ -14,7 +14,7 @@
 - `.travis.yml`
 
 ## ROS 2 Distro
-[ROS 2 Foxy Fitzroy - Patch Release 4](https://github.com/ros2/ros2/releases/tag/release-foxy-20201211)
+- [ROS 2 Foxy Fitzroy - Patch Release 4](https://github.com/ros2/ros2/releases/tag/release-foxy-20201211)
 
 ## Build
 ```
