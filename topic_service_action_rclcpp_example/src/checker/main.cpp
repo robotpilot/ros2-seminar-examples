@@ -1,3 +1,5 @@
+// Copyright 2021 OROCA
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -24,7 +26,7 @@
 void print_help()
 {
   printf("For Node node:\n");
-  printf("node_name [-h] [-c comment]\n");
+  printf("node_name [-h]\n");
   printf("Options:\n");
   printf("\t-h Help           : Print this help function.\n");
 }

@@ -1,3 +1,5 @@
+// Copyright 2021 OROCA
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -30,6 +32,8 @@ public:
 
   explicit Operator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Operator();
+
+  void send_request();
 
 private:
   rclcpp::Client<ArithmeticOperator>::SharedPtr arithmetic_service_client_;
