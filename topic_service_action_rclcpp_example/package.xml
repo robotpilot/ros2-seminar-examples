@@ -4,14 +4,15 @@
   <name>topic_service_action_rclcpp_example</name>
   <version>0.1.0</version>
   <description>ROS 2 rclcpp example package for the topic, service, action</description>
-  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
   <license>Apache License 2.0</license>
-  <author email="thlim@robotis.com">Darby Lim</author>
+  <author email="passionvirus@gmail.com">Pyo</author>
+  <author email="routiful@gmail.com">Darby Lim</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>rclcpp</depend>
-  <depend>std_msgs</depend>
+  <depend>rclcpp_action</depend>
   <depend>msg_srv_action_interface_example</depend>
 
   <test_depend>ament_lint_auto</test_depend>

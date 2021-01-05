@@ -1,6 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -14,8 +11,8 @@
 // limitations under the License.
 
 
-#ifndef TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CHECKER_CHECKER_HPP_
-#define TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CHECKER_CHECKER_HPP_
+#ifndef CHECKER__CHECKER_HPP_
+#define CHECKER__CHECKER_HPP_
 
 #include <memory>
 #include <string>
@@ -26,26 +23,31 @@
 
 #include "msg_srv_action_interface_example/action/arithmetic_checker.hpp"
 
+
 class Checker : public rclcpp::Node
 {
- public:
-  Checker(float goal_sum, const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
+public:
+  using ArithmeticChecker = msg_srv_action_interface_example::action::ArithmeticChecker;
+  using GoalHandleArithmeticChecker = rclcpp_action::ClientGoalHandle<ArithmeticChecker>;
+
+  explicit Checker(
+    float goal_sum,
+    const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Checker();
 
- private:
+private:
   void send_goal_total_sum(float goal_sum);
 
   void get_arithmetic_action_goal(
-    std::shared_future<rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr> future);
+    std::shared_future<rclcpp_action::ClientGoalHandle<ArithmeticChecker>::SharedPtr> future);
 
   void get_arithmetic_action_feedback(
-    rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr,
-    const std::shared_ptr<const msg_srv_action_interface_example::action::ArithmeticChecker::Feedback> feedback);
+    GoalHandleArithmeticChecker::SharedPtr,
+    const std::shared_ptr<const ArithmeticChecker::Feedback> feedback);
 
   void get_arithmetic_action_result(
-    const rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::WrappedResult & result);
+    const GoalHandleArithmeticChecker::WrappedResult & result);
 
-  rclcpp_action::Client<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr arithmetic_action_client_;
+  rclcpp_action::Client<ArithmeticChecker>::SharedPtr arithmetic_action_client_;
 };
-#endif  // TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CHECKER_CHECKER_HPP_
-
+#endif  // CHECKER__CHECKER_HPP_

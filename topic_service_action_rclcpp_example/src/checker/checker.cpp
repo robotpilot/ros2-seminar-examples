@@ -1,6 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,13 +10,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <memory>
 
 #include "checker/checker.hpp"
 
 Checker::Checker(float goal_sum, const rclcpp::NodeOptions & node_options)
 : Node("checker", node_options)
 {
-  arithmetic_action_client_ = rclcpp_action::create_client<msg_srv_action_interface_example::action::ArithmeticChecker>(
+  arithmetic_action_client_ = rclcpp_action::create_client<ArithmeticChecker>(
     this->get_node_base_interface(),
     this->get_node_graph_interface(),
     this->get_node_logging_interface(),
@@ -31,7 +29,6 @@ Checker::Checker(float goal_sum, const rclcpp::NodeOptions & node_options)
 
 Checker::~Checker()
 {
-
 }
 
 void Checker::send_goal_total_sum(float goal_sum)
@@ -47,10 +44,10 @@ void Checker::send_goal_total_sum(float goal_sum)
     return;
   }
 
-  auto goal_msg = msg_srv_action_interface_example::action::ArithmeticChecker::Goal();
+  auto goal_msg = ArithmeticChecker::Goal();
   goal_msg.goal_sum = goal_sum;
 
-  auto send_goal_options = rclcpp_action::Client<msg_srv_action_interface_example::action::ArithmeticChecker>::SendGoalOptions();
+  auto send_goal_options = rclcpp_action::Client<ArithmeticChecker>::SendGoalOptions();
   send_goal_options.goal_response_callback =
     std::bind(&Checker::get_arithmetic_action_goal, this, _1);
   send_goal_options.feedback_callback =
@@ -61,7 +58,7 @@ void Checker::send_goal_total_sum(float goal_sum)
 }
 
 void Checker::get_arithmetic_action_goal(
-  std::shared_future<rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr> future)
+  std::shared_future<GoalHandleArithmeticChecker::SharedPtr> future)
 {
   auto goal_handle = future.get();
   if (!goal_handle) {
@@ -72,8 +69,8 @@ void Checker::get_arithmetic_action_goal(
 }
 
 void Checker::get_arithmetic_action_feedback(
-  rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr,
-  const std::shared_ptr<const msg_srv_action_interface_example::action::ArithmeticChecker::Feedback> feedback)
+  GoalHandleArithmeticChecker::SharedPtr,
+  const std::shared_ptr<const ArithmeticChecker::Feedback> feedback)
 {
   RCLCPP_INFO(this->get_logger(), "Action feedback: ");
   for (const auto & formula : feedback->formula) {
@@ -82,7 +79,7 @@ void Checker::get_arithmetic_action_feedback(
 }
 
 void Checker::get_arithmetic_action_result(
-  const rclcpp_action::ClientGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>::WrappedResult & result)
+  const GoalHandleArithmeticChecker::WrappedResult & result)
 {
   switch (result.code) {
     case rclcpp_action::ResultCode::SUCCEEDED:

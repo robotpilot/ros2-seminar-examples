@@ -1,6 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -34,8 +31,7 @@ void print_help()
 
 int main(int argc, char * argv[])
 {
-  if (rcutils_cli_option_exist(argv, argv + argc, "-h"))
-  {
+  if (rcutils_cli_option_exist(argv, argv + argc, "-h")) {
     print_help();
     return 0;
   }
@@ -44,8 +40,7 @@ int main(int argc, char * argv[])
 
   float goal_total_sum = 50.0;
   char * cli_option = rcutils_cli_get_option(argv, argv + argc, "-g");
-  if (nullptr != cli_option)
-  {
+  if (nullptr != cli_option) {
     goal_total_sum = std::stof(cli_option);
   }
   printf("goal_total_sum : %2.f\n", goal_total_sum);
@@ -58,4 +53,3 @@ int main(int argc, char * argv[])
 
   return 0;
 }
-

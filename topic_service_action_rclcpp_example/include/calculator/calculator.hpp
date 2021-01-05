@@ -1,6 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,9 +10,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-#ifndef TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CALCULATOR_CALCULATOR_HPP_
-#define TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CALCULATOR_CALCULATOR_HPP_
+#ifndef CALCULATOR__CALCULATOR_HPP_
+#define CALCULATOR__CALCULATOR_HPP_
 
 #include <memory>
 #include <sstream>
@@ -34,25 +30,32 @@
 
 class Calculator : public rclcpp::Node
 {
- public:
+public:
+  using ArithmeticArgument = msg_srv_action_interface_example::msg::ArithmeticArgument;
+  using ArithmeticOperator = msg_srv_action_interface_example::srv::ArithmeticOperator;
+  using ArithmeticChecker = msg_srv_action_interface_example::action::ArithmeticChecker;
+  using GoalHandleArithmeticChecker = rclcpp_action::ServerGoalHandle<ArithmeticChecker>;
+
   explicit Calculator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Calculator();
 
- private:
+private:
   float calculate_given_formula(const float & a, const float & b, const int8_t & operators);
 
-  rclcpp_action::GoalResponse handle_goal(const rclcpp_action::GoalUUID & uuid, std::shared_ptr<const msg_srv_action_interface_example::action::ArithmeticChecker::Goal> goal);
-  rclcpp_action::CancelResponse handle_cancel(const std::shared_ptr<rclcpp_action::ServerGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>> goal_handle);
-  void execute_checker(const std::shared_ptr<rclcpp_action::ServerGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>> goal_handle);
-  void handle_accepted(const std::shared_ptr<rclcpp_action::ServerGoalHandle<msg_srv_action_interface_example::action::ArithmeticChecker>> goal_handle);
+  rclcpp_action::GoalResponse handle_goal(
+    const rclcpp_action::GoalUUID & uuid,
+    std::shared_ptr<const ArithmeticChecker::Goal> goal);
+  rclcpp_action::CancelResponse handle_cancel(
+    const std::shared_ptr<GoalHandleArithmeticChecker> goal_handle);
+  void execute_checker(const std::shared_ptr<GoalHandleArithmeticChecker> goal_handle);
 
-  rclcpp::Subscription<msg_srv_action_interface_example::msg::ArithmeticArgument>::SharedPtr
+  rclcpp::Subscription<ArithmeticArgument>::SharedPtr
     arithmetic_argument_subscriber_;
 
-  rclcpp::Service<msg_srv_action_interface_example::srv::ArithmeticOperator>::SharedPtr
+  rclcpp::Service<ArithmeticOperator>::SharedPtr
     arithmetic_argument_server_;
 
-  rclcpp_action::Server<msg_srv_action_interface_example::action::ArithmeticChecker>::SharedPtr
+  rclcpp_action::Server<ArithmeticChecker>::SharedPtr
     arithmetic_action_server_;
 
   float argument_a_;
@@ -64,4 +67,4 @@ class Calculator : public rclcpp::Node
   std::string argument_formula_;
   std::vector<std::string> operator_;
 };
-#endif  // TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__CALCULATOR_CALCULATOR_HPP_
+#endif  // CALCULATOR__CALCULATOR_HPP_

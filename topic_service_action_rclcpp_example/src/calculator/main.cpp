@@ -1,5 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -34,8 +32,7 @@ void print_help()
 
 int main(int argc, char * argv[])
 {
-  if (rcutils_cli_option_exist(argv, argv + argc, "-h"))
-  {
+  if (rcutils_cli_option_exist(argv, argv + argc, "-h")) {
     print_help();
     return 0;
   }

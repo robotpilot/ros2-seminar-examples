@@ -1,6 +1,3 @@
-// Copyright 2020 ROBOTIS CO., LTD.
-//
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,9 +10,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-#ifndef TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__ARITHMETIC_ARGUMENT_HPP_
-#define TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__ARITHMETIC_ARGUMENT_HPP_
+#ifndef ARITHMETIC__ARGUMENT_HPP_
+#define ARITHMETIC__ARGUMENT_HPP_
 
 #include <chrono>
 #include <memory>
@@ -29,20 +25,22 @@
 
 class Argument : public rclcpp::Node
 {
- public:
+public:
+  using ArithmeticArgument = msg_srv_action_interface_example::msg::ArithmeticArgument;
+
   explicit Argument(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Argument();
 
- private:
-  void publish_random_arighmetic_arguments();
+private:
+  void publish_random_arithmetic_arguments();
   void update_parameter();
 
   float min_random_num_;
   float max_random_num_;
 
-  rclcpp::Publisher<msg_srv_action_interface_example::msg::ArithmeticArgument>::SharedPtr arithmetic_argument_publisher_;
+  rclcpp::Publisher<ArithmeticArgument>::SharedPtr arithmetic_argument_publisher_;
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Subscription<rcl_interfaces::msg::ParameterEvent>::SharedPtr parameter_event_sub_;
   rclcpp::AsyncParametersClient::SharedPtr parameters_client_;
 };
-#endif  // TOPIC_SERVICE_ACTION_RCLCPP_EXAMPLES__ARITHMETIC_ARGUMENT_HPP_
+#endif  // ARITHMETIC__ARGUMENT_HPP_
