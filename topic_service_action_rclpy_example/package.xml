@@ -4,10 +4,10 @@
   <name>topic_service_action_rclpy_example</name>
   <version>0.1.0</version>
   <description>ROS 2 rclpy example package for the topic, service, action</description>
-  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
   <license>Apache License 2.0</license>
-  <author email="pyo@robotis.com">Pyo</author>
-  <author email="thlim@robotis.com">Darby Lim</author>
+  <author email="passionvirus@gmail.com">Pyo</author>
+  <author email="routiful@gmail.com">Darby Lim</author>
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
   <depend>msg_srv_action_interface_example</depend>

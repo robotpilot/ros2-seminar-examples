@@ -15,8 +15,8 @@ notifications:
     on_success: change
     on_failure: always
     recipients:
-      - pyo@robotis.com
-      - thlim@robotis.com
+      - passionvirus@gmail.com
+      - routiful@gmail.com
 
 branches:
   only:
