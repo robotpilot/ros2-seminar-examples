@@ -1,5 +1,9 @@
 # ROS 2 example packages for the ROS 2 seminar
 
+| Travis CI (master)  | Travis CI (develop) | Ament Lint |
+| ------------- | ------------- | ------------- |
+| [![Build Status](https://travis-ci.com/github/robotpilot/ros2-seminar-examples.svg?branch=main)](https://travis-ci.com/github/robotpilot/ros2-seminar-examples)  | [![Build Status](https://travis-ci.com/github/robotpilot/ros2-seminar-examples.svg?branch=develop)](https://travis-ci.com/github/robotpilot/ros2-seminar-examples)  |  [![Lint](https://github.com/robotpilot/ros2-seminar-examples/workflows/Lint/badge.svg?branch=develop)](https://github.com/robotpilot/ros2-seminar-examples/actions) |
+
 ## ROS 2 online seminar
 - https://cafe.naver.com/openrt/24070
 
