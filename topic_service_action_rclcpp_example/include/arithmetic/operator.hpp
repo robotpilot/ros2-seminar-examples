@@ -33,6 +33,8 @@ public:
   explicit Operator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Operator();
 
+  void send_request();
+
 private:
   rclcpp::Client<ArithmeticOperator>::SharedPtr arithmetic_service_client_;
 };
