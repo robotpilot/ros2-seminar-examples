@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <cstdio>
 #include <fcntl.h>
 #include <getopt.h>
+#include <termios.h>
+#include <unistd.h>
+#include <cstdio>
 #include <iostream>
 #include <memory>
 #include <string>
-#include <termios.h>
-#include <unistd.h>
 #include <utility>
 
 #include "rclcpp/rclcpp.hpp"
@@ -111,7 +111,7 @@ bool pull_trigger()
       uint8_t c = getch();
       if (c == KEY_ENTER) {
         return true;
-      } else{
+      } else {
         return false;
       }
     }
