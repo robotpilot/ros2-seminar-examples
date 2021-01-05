@@ -99,7 +99,7 @@ void Argument::update_parameter()
 void print_help()
 {
   printf("For argument node:\n");
-  printf("node_name [-h] [-c comment]\n");
+  printf("node_name [-h]\n");
   printf("Options:\n");
   printf("\t-h Help           : Print this help function.\n");
 }

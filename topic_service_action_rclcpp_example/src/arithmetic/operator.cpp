@@ -61,7 +61,7 @@ Operator::~Operator()
 void print_help()
 {
   printf("For operator node:\n");
-  printf("node_name [-h] [-c comment]\n");
+  printf("node_name [-h]\n");
   printf("Options:\n");
   printf("\t-h Help           : Print this help function.\n");
 }
