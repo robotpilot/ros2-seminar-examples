@@ -50,7 +50,7 @@ def main(args=None):
                 if future.done():
                     try:
                         service_response = future.result()
-                    except Exception as e:
+                    except Exception as e:  # noqa: B902
                         operator.get_logger().warn('Service call failed: {}'.format(str(e)))
                     else:
                         operator.get_logger().info(

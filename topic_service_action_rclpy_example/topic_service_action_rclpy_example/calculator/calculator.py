@@ -42,10 +42,10 @@ class Calculator(Node):
         qos_depth = self.get_parameter('qos_depth').value
 
         QOS_RKL10V = QoSProfile(
-            reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_RELIABLE,
-            history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            history=QoSHistoryPolicy.KEEP_LAST,
             depth=qos_depth,
-            durability=QoSDurabilityPolicy.RMW_QOS_POLICY_DURABILITY_VOLATILE)
+            durability=QoSDurabilityPolicy.VOLATILE)
 
         self.arithmetic_argument_subscriber = self.create_subscription(
             ArithmeticArgument,
