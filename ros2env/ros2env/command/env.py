@@ -14,8 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ros2cli.command import add_subparsers_on_demand
+from ros2cli.command import add_subparsers
 from ros2cli.command import CommandExtension
+from ros2cli.verb import get_verb_extensions
 
 
 class EnvCommand(CommandExtension):
@@ -25,9 +26,11 @@ class EnvCommand(CommandExtension):
         self._subparser = parser
 
         # add arguments and sub-commands of verbs
-        add_subparsers_on_demand(
-            parser, cli_name, '_verb', 'ros2param.verb', required=False,
-            argv=argv)
+        verb_extensions = get_verb_extensions('ros2env.verb')
+        add_subparsers(parser, cli_name, '_verb', verb_extensions, required=False)
+        # add_subparsers_on_demand(
+        #     parser, cli_name, '_verb', 'ros2param.verb', required=False,
+        #     argv=argv)
 
     def main(self, *, parser, args):
         if not hasattr(args, '_verb'):
