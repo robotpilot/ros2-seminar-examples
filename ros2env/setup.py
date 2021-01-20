@@ -40,5 +40,5 @@ setup(
             'list = ros2env.verb.list:ListVerb',
             'set = ros2env.verb.set:SetVerb',
         ],
-    }
+    },
 )

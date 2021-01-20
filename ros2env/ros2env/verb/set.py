@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ros2cli.verb import VerbExtension
 from ros2env.api import get_all_env_list
 from ros2env.api import set_ros_env
+from ros2env.verb import VerbExtension
 
 
 class SetVerb(VerbExtension):
