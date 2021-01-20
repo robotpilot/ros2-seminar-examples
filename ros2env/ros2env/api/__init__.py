@@ -1,3 +1,4 @@
+# Copyright 2018 Open Source Robotics Foundation, Inc.
 # Copyright 2019 Canonical Ldt.
 # Copyright 2021 OROCA
 #
@@ -39,3 +40,9 @@ def get_all_env_list():
     dds_env_list = get_dds_env_list()
     all_env_list = ros_env_list + dds_env_list
     return all_env_list
+
+
+def set_ros_env(env_name, env_value):
+    os.environ[env_name] = env_value
+    value = os.getenv(env_name, 'None')
+    return '{0} = {1}'.format(env_name, value)
