@@ -23,3 +23,4 @@ jobs:
           msg_srv_action_interface_example
           topic_service_action_rclpy_example
           topic_service_action_rclcpp_example
+          ros2env
