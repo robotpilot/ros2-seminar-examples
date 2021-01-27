@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <iostream>
 #include <memory>
 #include <utility>
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp/time_source.hpp"
+
+#include "std_msgs/msg/header.hpp"
 
 
 int main(int argc, char * argv[])
@@ -25,14 +26,25 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);
 
   auto node = rclcpp::Node::make_shared("time_example_node");
+  auto time_publisher = node->create_publisher<std_msgs::msg::Header>("time", 10);
+  std_msgs::msg::Header msg;
 
-  rclcpp::Time now;
   rclcpp::WallRate loop_rate(1);
 
   while (rclcpp::ok()) {
-    now = node->now();
-    std::cout << std::fixed;
-    std::cout << "sec " << now.seconds() << " nanoseconds " << now.nanoseconds() << std::endl;
+    static rclcpp::Time past = node->now();
+
+    rclcpp::Time now = node->now();
+    RCLCPP_INFO(node->get_logger(), "sec %lf nsec %ld", now.seconds(), now.nanoseconds());
+
+    if ((now - past).nanoseconds() * 1e-9 > 5) {
+      RCLCPP_INFO(node->get_logger(), "Over 5 seconds!");
+      past = node->now();
+    }
+
+    rclcpp::Duration duration(1, 0);
+    msg.stamp = now + duration;
+    time_publisher->publish(msg);
 
     rclcpp::spin_some(node);
     loop_rate.sleep();
