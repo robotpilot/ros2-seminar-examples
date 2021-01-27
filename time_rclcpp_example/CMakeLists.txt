@@ -21,10 +21,12 @@ endif()
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(time_example src/main.cpp)
 ament_target_dependencies(time_example
   rclcpp
+  std_msgs
 )
 
 install(TARGETS
