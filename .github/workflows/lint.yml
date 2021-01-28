@@ -25,3 +25,4 @@ jobs:
           topic_service_action_rclpy_example
           topic_service_action_rclcpp_example
           ros2env
+          rqt_example
