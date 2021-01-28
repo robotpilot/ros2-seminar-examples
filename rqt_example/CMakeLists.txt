@@ -16,7 +16,8 @@ find_package(ament_cmake_python REQUIRED)
 ament_python_install_package(${PROJECT_NAME}
   PACKAGE_DIR src/${PROJECT_NAME})
 
-install(FILES plugin.xml
+install(FILES
+  plugin.xml
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -26,7 +27,8 @@ install(DIRECTORY
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(PROGRAMS scripts/rqt_example
+install(PROGRAMS
+  scripts/rqt_example
   DESTINATION lib/${PROJECT_NAME}
 )
 
