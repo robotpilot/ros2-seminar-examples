@@ -30,7 +30,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'time_example = time_rclpy_example.time_rclpy_example:main',
+            'time_example = time_rclpy_example.time_example:main',
         ],
     },
 )
