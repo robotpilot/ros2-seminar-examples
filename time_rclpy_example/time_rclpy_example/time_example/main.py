@@ -23,25 +23,26 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = rclpy.create_node('minimal_publisher')
-    time_publisher = self.create_publisher(Header, 'time', 10)
-    Header msg
+    time_publisher = node.create_publisher(Header, 'time', 10)
+    msg = Header()
 
-    rate = node.create_rate(1.0)  # Frequency
-    Time past = self.get_clock().now()
+    rate = node.create_rate(1.0)
+    past = node.get_clock().now()
 
-    while not runner.done:
-        Time now = self.get_clock().now()
-        node.get_logger().info('sec %ld nsec %ld' % now.seconds(), now.nanoseconds())
+    while rclpy.ok():
+        now = node.get_clock().now()
+        seconds, nanoseconds = now.seconds_nanoseconds()
+        node.get_logger().info('sec {0} nsec {1}'.format(seconds, nanoseconds))
 
-        if ((now - past).nanoseconds() * 1e-9) > 5:
-            node.get_logger().info('sec %ld nsec %ld' % now.seconds(), now.nanoseconds())
-            past = self.get_clock().now()
+        if ((now - past).nanoseconds * 1e-9) > 5:
+            node.get_logger().info('Over 5 seconds!')
+            past = node.get_clock().now()
 
-        Duration duration(1,0)
-        msg.stamp = self.get_clock().now().to_msg()
+        duration = Duration(seconds = 1, nanoseconds = 0)
+        msg.stamp = (now + duration).to_msg()
         time_publisher.publish(msg)
 
-        rclpy.spin_some(node)
+        rclpy.spin_once(node)
         rate.sleep()
 
     node.destroy_node()
