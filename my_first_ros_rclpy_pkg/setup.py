@@ -5,7 +5,7 @@ package_name = 'my_first_ros_rclpy_pkg'
 
 setup(
     name=package_name,
-    version='0.0.2',
+    version='0.3.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
