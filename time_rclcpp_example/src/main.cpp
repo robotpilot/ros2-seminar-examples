@@ -29,7 +29,8 @@ int main(int argc, char * argv[])
   auto time_publisher = node->create_publisher<std_msgs::msg::Header>("time", 10);
   std_msgs::msg::Header msg;
 
-  rclcpp::WallRate loop_rate(1);
+  rclcpp::WallRate loop_rate(1.0);
+  rclcpp::Duration duration(1, 0);
 
   while (rclcpp::ok()) {
     static rclcpp::Time past = node->now();
@@ -42,7 +43,6 @@ int main(int argc, char * argv[])
       past = node->now();
     }
 
-    rclcpp::Duration duration(1, 0);
     msg.stamp = now + duration;
     time_publisher->publish(msg);
 
