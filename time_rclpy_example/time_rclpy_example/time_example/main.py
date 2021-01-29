@@ -27,6 +27,7 @@ def main(args=None):
     msg = Header()
 
     rate = node.create_rate(1.0)
+    duration = Duration(seconds = 1, nanoseconds = 0)
     past = node.get_clock().now()
 
     try:
@@ -39,7 +40,6 @@ def main(args=None):
                 node.get_logger().info('Over 5 seconds!')
                 past = node.get_clock().now()
 
-            duration = Duration(seconds = 1, nanoseconds = 0)
             msg.stamp = (now + duration).to_msg()
             time_publisher.publish(msg)
 
