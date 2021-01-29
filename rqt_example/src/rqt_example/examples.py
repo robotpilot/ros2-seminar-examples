@@ -13,9 +13,9 @@
 # limitations under the License.
 
 
-from rqt_gui_py.plugin import Plugin
-
 from rqt_example.examples_widget import ExamplesWidget
+
+from rqt_gui_py.plugin import Plugin
 
 
 class Examples(Plugin):
