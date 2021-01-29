@@ -14,8 +14,6 @@
 
 import rclpy
 from rclpy.duration import Duration
-from rclpy.node import Node
-from rclpy.time import Time
 from std_msgs.msg import Header
 
 
@@ -27,7 +25,7 @@ def main(args=None):
     msg = Header()
 
     rate = node.create_rate(1.0)
-    duration = Duration(seconds = 1, nanoseconds = 0)
+    duration = Duration(seconds=1, nanoseconds=0)
     past = node.get_clock().now()
 
     try:
