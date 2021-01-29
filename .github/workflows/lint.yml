@@ -19,6 +19,7 @@ jobs:
         linter: ${{ matrix.linter }}
         package-name: |
           time_rclcpp_example
+          time_rclpy_example
           my_first_ros_rclcpp_pkg
           my_first_ros_rclpy_pkg
           msg_srv_action_interface_example
