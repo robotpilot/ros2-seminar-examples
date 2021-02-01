@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from rqt_example.examples_widget import ExamplesWidget
 
 from rqt_gui_py.plugin import Plugin
