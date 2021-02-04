@@ -24,12 +24,6 @@ from python_qt_binding.QtGui import QKeySequence
 from python_qt_binding.QtWidgets import QShortcut
 from python_qt_binding.QtWidgets import QWidget
 import rclpy
-from rclpy.qos import qos_profile_action_status_default
-from rclpy.qos import qos_profile_parameter_events
-from rclpy.qos import qos_profile_parameters
-from rclpy.qos import qos_profile_sensor_data
-from rclpy.qos import qos_profile_services_default
-from rclpy.qos import qos_profile_system_default
 from rclpy.qos import QoSProfile
 from std_srvs.srv import SetBool
 
@@ -65,20 +59,19 @@ class ExamplesWidget(QWidget):
         self.lcd_number_x.display(0.0)
         self.lcd_number_yaw.display(0.0)
 
-        qos_profile = 0
-        qos = self.get_qos(qos_profile)
+        qos = QoSProfile(depth=10)
         self.publisher = self.node.create_publisher(Twist, topic_name, qos)
         self.subscriber = self.node.create_subscription(Twist, topic_name, self.cmd_callback, qos)
         self.service_server = self.node.create_service(SetBool, service_name, self.srv_callback)
         self.service_client = self.node.create_client(SetBool, service_name)
 
-        update_timer = QTimer(self)
-        update_timer.timeout.connect(self.update_data)
-        update_timer.start(self.redraw_interval)
+        self.update_timer = QTimer(self)
+        self.update_timer.timeout.connect(self.update_data)
+        self.update_timer.start(self.redraw_interval)
 
-        publish_timer = QTimer(self)
-        publish_timer.timeout.connect(self.send_velocity)
-        publish_timer.start(self.publish_interval)
+        self.publish_timer = QTimer(self)
+        self.publish_timer.timeout.connect(self.send_velocity)
+        self.publish_timer.start(self.publish_interval)
 
         self.push_button_w.pressed.connect(self.on_increase_x_linear_pressed)
         self.push_button_x.pressed.connect(self.on_decrease_x_linear_pressed)
@@ -101,16 +94,6 @@ class ExamplesWidget(QWidget):
 
         self.radio_button_led_on.setShortcut('o')
         self.radio_button_led_off.setShortcut('f')
-
-    def get_qos(self, i):
-        return {
-            0: QoSProfile(depth=10),
-            1: qos_profile_sensor_data,
-            2: qos_profile_parameters,
-            3: qos_profile_services_default,
-            4: qos_profile_parameter_events,
-            5: qos_profile_system_default,
-            6: qos_profile_action_status_default}[i]
 
     def cmd_callback(self, msg):
         self.sub_velocity = msg
@@ -195,5 +178,9 @@ class ExamplesWidget(QWidget):
     def restore_settings(self, plugin_settings, instance_settings):
         pass
 
-    def trigger_configuration(self):
-        pass
+    def shutdown_widget(self):
+        self.update_timer.stop()
+        self.publish_timer.stop()
+        self.node.destroy_publisher(self.publisher)
+        self.node.destroy_subscription(self.subscriber)
+        self.close()

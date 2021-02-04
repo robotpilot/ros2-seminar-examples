@@ -36,4 +36,5 @@ class Examples(Plugin):
         self.widget.restore_settings(plugin_settings, instance_settings)
 
     def shutdown_plugin(self):
-        self.widget.trigger_configuration()
+        print('shutdown_widget')
+        self.widget.shutdown_widget()
