@@ -22,19 +22,13 @@ class Examples(Plugin):
 
     def __init__(self, context):
         super(Examples, self).__init__(context)
-        self.setObjectName('Examples')
+        self.setObjectName('RQt example')
         self.widget = ExamplesWidget(context.node)
         serial_number = context.serial_number()
         if serial_number > 1:
             self.widget.setWindowTitle(self.widget.windowTitle() + ' ({0})'.format(serial_number))
         context.add_widget(self.widget)
 
-    def save_settings(self, plugin_settings, instance_settings):
-        self.widget.save_settings(plugin_settings, instance_settings)
-
-    def restore_settings(self, plugin_settings, instance_settings):
-        self.widget.restore_settings(plugin_settings, instance_settings)
-
     def shutdown_plugin(self):
-        print('shutdown_widget')
+        print('Shutdown the RQt example.')
         self.widget.shutdown_widget()

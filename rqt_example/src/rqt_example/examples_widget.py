@@ -29,16 +29,18 @@ from std_srvs.srv import SetBool
 
 
 class ExamplesWidget(QWidget):
-    redraw_interval = 30
-    publish_interval = 100
-    cmd_vel_x_factor = 1000.0
-    cmd_vel_yaw_factor = -10.0
 
     def __init__(self, node):
         super(ExamplesWidget, self).__init__()
         self.setObjectName('ExamplesWidget')
 
         self.node = node
+
+        self.REDRAW_INTERVAL = 30
+        self.PUBLISH_INTERVAL = 100
+        self.CMD_VEL_X_FACTOR = 1000.0
+        self.CMD_VEL_YAW_FACTOR = -10.0
+
         pkg_name = 'rqt_example'
         ui_filename = 'rqt_example.ui'
         topic_name = 'cmd_vel'
@@ -61,17 +63,17 @@ class ExamplesWidget(QWidget):
 
         qos = QoSProfile(depth=10)
         self.publisher = self.node.create_publisher(Twist, topic_name, qos)
-        self.subscriber = self.node.create_subscription(Twist, topic_name, self.cmd_callback, qos)
+        self.subscriber = self.node.create_subscription(Twist, topic_name, self.send_cmd, qos)
         self.service_server = self.node.create_service(SetBool, service_name, self.srv_callback)
         self.service_client = self.node.create_client(SetBool, service_name)
 
         self.update_timer = QTimer(self)
         self.update_timer.timeout.connect(self.update_data)
-        self.update_timer.start(self.redraw_interval)
+        self.update_timer.start(self.REDRAW_INTERVAL)
 
         self.publish_timer = QTimer(self)
         self.publish_timer.timeout.connect(self.send_velocity)
-        self.publish_timer.start(self.publish_interval)
+        self.publish_timer.start(self.PUBLISH_INTERVAL)
 
         self.push_button_w.pressed.connect(self.on_increase_x_linear_pressed)
         self.push_button_x.pressed.connect(self.on_decrease_x_linear_pressed)
@@ -95,18 +97,18 @@ class ExamplesWidget(QWidget):
         self.radio_button_led_on.setShortcut('o')
         self.radio_button_led_off.setShortcut('f')
 
-    def cmd_callback(self, msg):
+    def send_cmd(self, msg):
         self.sub_velocity = msg
 
     def srv_callback(self, request, response):
         if request.data:
             self.push_button_led_status.setText('ON')
-            self.push_button_led_status.setStyleSheet('background-color: yellow')
+            self.push_button_led_status.setStyleSheet('color: rgb(255, 170, 0);')
             response.success = True
             response.message = 'LED ON'
         elif not request.data:
             self.push_button_led_status.setText('OFF')
-            self.push_button_led_status.setStyleSheet('background-color: grey')
+            self.push_button_led_status.setStyleSheet('')
             response.success = True
             response.message = 'LED OFF'
         else:
@@ -167,20 +169,15 @@ class ExamplesWidget(QWidget):
         self.publisher.publish(twist)
 
     def update_data(self):
-        self.slider_x.setValue(self.sub_velocity.linear.x * self.cmd_vel_x_factor)
-        self.dial_yaw.setValue(self.sub_velocity.angular.z * self.cmd_vel_yaw_factor)
+        self.slider_x.setValue(self.sub_velocity.linear.x * self.CMD_VEL_X_FACTOR)
+        self.dial_yaw.setValue(self.sub_velocity.angular.z * self.CMD_VEL_YAW_FACTOR)
         self.lcd_number_x.display(self.sub_velocity.linear.x)
         self.lcd_number_yaw.display(self.sub_velocity.angular.z)
-
-    def save_settings(self, plugin_settings, instance_settings):
-        pass
-
-    def restore_settings(self, plugin_settings, instance_settings):
-        pass
 
     def shutdown_widget(self):
         self.update_timer.stop()
         self.publish_timer.stop()
-        self.node.destroy_publisher(self.publisher)
+        self.node.destroy_client(self.service_client)
+        self.node.destroy_service(self.service_server)
         self.node.destroy_subscription(self.subscriber)
-        self.close()
+        self.node.destroy_publisher(self.publisher)

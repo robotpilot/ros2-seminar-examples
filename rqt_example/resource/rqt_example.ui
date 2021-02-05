@@ -78,7 +78,7 @@
      <bool>false</bool>
     </property>
     <property name="notchTarget">
-     <double>10.0</double>
+     <double>10.000000000000000</double>
     </property>
     <property name="notchesVisible">
      <bool>true</bool>
@@ -192,8 +192,17 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>On/Off</string>
