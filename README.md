@@ -75,3 +75,8 @@ ROS_PYTHON_VERSION = 3
 ROS_DOMAIN_ID      = 7
 RMW_IMPLEMENTATION = rmw_fastrtps_cpp
 ```
+
+## Run logging_rclpy_example package
+```
+$ ros2 run logging_rclpy_example logging_example
+```
