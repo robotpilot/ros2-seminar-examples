@@ -49,10 +49,11 @@ class LoggerUsage(Node):
         self.count += 1
         if self.count > 15:
             self.get_logger().warn('Reseting count to 0')
-            self.count = 0;
+            self.count = 0
 
     def debug_function_to_evaluate(self):
         return is_divisor_of_twelve(self.count, self.get_logger())
+
 
 def is_divisor_of_twelve(val, logger):
     if val == 0:
@@ -60,6 +61,7 @@ def is_divisor_of_twelve(val, logger):
         return False
 
     return (12 % val) == 0
+
 
 def main(args=None):
     rclpy.init(args=args)
