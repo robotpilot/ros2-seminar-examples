@@ -18,6 +18,7 @@ jobs:
         distribution: foxy
         linter: ${{ matrix.linter }}
         package-name: |
+          logging_rclpy_example
           time_rclcpp_example
           time_rclpy_example
           my_first_ros_rclcpp_pkg
