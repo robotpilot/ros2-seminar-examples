@@ -76,6 +76,12 @@ ROS_DOMAIN_ID      = 7
 RMW_IMPLEMENTATION = rmw_fastrtps_cpp
 ```
 
+## Run rqt_example package
+```
+ros2 run rqt_example rqt_example
+ros2 launch rqt_example turtlesim.launch.py
+```
+
 ## Run logging_rclpy_example package
 ```
 $ ros2 run logging_rclpy_example logging_example
