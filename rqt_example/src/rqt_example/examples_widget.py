@@ -63,26 +63,23 @@ class ExamplesWidget(QWidget):
 
         qos = QoSProfile(depth=10)
         self.publisher = self.node.create_publisher(Twist, topic_name, qos)
-        self.subscriber = self.node.create_subscription(Twist, topic_name, self.send_cmd, qos)
-        self.service_server = self.node.create_service(SetBool, service_name, self.srv_callback)
+        self.subscriber = self.node.create_subscription(Twist, topic_name, self.get_velocity, qos)
+        self.service_server = self.node.create_service(SetBool, service_name, self.set_led_status)
         self.service_client = self.node.create_client(SetBool, service_name)
-
-        self.update_timer = QTimer(self)
-        self.update_timer.timeout.connect(self.update_data)
-        self.update_timer.start(self.REDRAW_INTERVAL)
 
         self.publish_timer = QTimer(self)
         self.publish_timer.timeout.connect(self.send_velocity)
         self.publish_timer.start(self.PUBLISH_INTERVAL)
 
-        self.push_button_w.pressed.connect(self.on_increase_x_linear_pressed)
-        self.push_button_x.pressed.connect(self.on_decrease_x_linear_pressed)
-        self.push_button_a.pressed.connect(self.on_increase_z_angular_pressed)
-        self.push_button_d.pressed.connect(self.on_decrease_z_angular_pressed)
-        self.push_button_s.pressed.connect(self.on_stop_pressed)
+        self.update_timer = QTimer(self)
+        self.update_timer.timeout.connect(self.update_indicators)
+        self.update_timer.start(self.REDRAW_INTERVAL)
 
-        self.radio_button_led_on.clicked.connect(self.call_led_service)
-        self.radio_button_led_off.clicked.connect(self.call_led_service)
+        self.push_button_w.pressed.connect(self.increase_linear_x)
+        self.push_button_x.pressed.connect(self.decrease_linear_x)
+        self.push_button_a.pressed.connect(self.increase_angular_z)
+        self.push_button_d.pressed.connect(self.decrease_angular_z)
+        self.push_button_s.pressed.connect(self.set_stop)
 
         self.push_button_w.setShortcut('w')
         self.push_button_x.setShortcut('x')
@@ -94,13 +91,16 @@ class ExamplesWidget(QWidget):
         self.shortcut_space.setContext(Qt.ApplicationShortcut)
         self.shortcut_space.activated.connect(self.push_button_s.pressed)
 
+        self.radio_button_led_on.clicked.connect(self.call_led_service)
+        self.radio_button_led_off.clicked.connect(self.call_led_service)
+
         self.radio_button_led_on.setShortcut('o')
         self.radio_button_led_off.setShortcut('f')
 
-    def send_cmd(self, msg):
+    def get_velocity(self, msg):
         self.sub_velocity = msg
 
-    def srv_callback(self, request, response):
+    def set_led_status(self, request, response):
         if request.data:
             self.push_button_led_status.setText('ON')
             self.push_button_led_status.setStyleSheet('color: rgb(255, 170, 0);')
@@ -115,19 +115,19 @@ class ExamplesWidget(QWidget):
             response.success = False
         return response
 
-    def on_increase_x_linear_pressed(self):
+    def increase_linear_x(self):
         self.pub_velocity.linear.x += 0.1
 
-    def on_decrease_x_linear_pressed(self):
+    def decrease_linear_x(self):
         self.pub_velocity.linear.x -= 0.1
 
-    def on_increase_z_angular_pressed(self):
+    def increase_angular_z(self):
         self.pub_velocity.angular.z += 0.1
 
-    def on_decrease_z_angular_pressed(self):
+    def decrease_angular_z(self):
         self.pub_velocity.angular.z -= 0.1
 
-    def on_stop_pressed(self):
+    def set_stop(self):
         self.pub_velocity.linear.x = 0.0
         self.pub_velocity.angular.z = 0.0
 
@@ -168,7 +168,7 @@ class ExamplesWidget(QWidget):
         twist.angular.z = self.pub_velocity.angular.z
         self.publisher.publish(twist)
 
-    def update_data(self):
+    def update_indicators(self):
         self.slider_x.setValue(self.sub_velocity.linear.x * self.CMD_VEL_X_FACTOR)
         self.dial_yaw.setValue(self.sub_velocity.angular.z * self.CMD_VEL_YAW_FACTOR)
         self.lcd_number_x.display(self.sub_velocity.linear.x)
