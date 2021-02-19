@@ -9,15 +9,15 @@
   <author email="passionvirus@gmail.com">Pyo</author>
   <author email="routiful@gmail.com">Darby Lim</author>
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <depend>geometry_msgs</depend>
-  <depend>python3-catkin-pkg-modules</depend>
-  <depend>python_qt_binding</depend>
-  <depend>qt_gui_py_common</depend>
-  <depend>rclpy</depend>
-  <depend>rqt_gui</depend>
-  <depend>rqt_gui_py</depend>
-  <depend>rqt_py_common</depend>
-  <depend>std_srvs</depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>python_qt_binding</exec_depend>
+  <exec_depend>python3-catkin-pkg-modules</exec_depend>
+  <exec_depend>qt_gui_py_common</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>rqt_gui</exec_depend>
+  <exec_depend>rqt_gui_py</exec_depend>
+  <exec_depend>rqt_py_common</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <export>

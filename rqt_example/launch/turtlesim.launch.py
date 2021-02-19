@@ -23,15 +23,15 @@ def generate_launch_description():
         LogInfo(msg=['Execute the rqt_example with turtlesim node.']),
 
         Node(
-            node_namespace='turtle1',
+            namespace='turtle1',
             package='rqt_example',
-            node_executable='rqt_example',
-            node_name='rqt_example',
+            executable='rqt_example',
+            name='rqt_example',
             output='screen'),
 
         Node(
             package='turtlesim',
-            node_executable='turtlesim_node',
-            node_name='turtlesim',
+            executable='turtlesim_node',
+            name='turtlesim',
             output='screen')
     ])
