@@ -2,6 +2,12 @@
 Changelog for package rqt_example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.0 (2021-02-22)
+------------------
+* Added a launch file for running with turtlesim node
+* Code refactoring
+* Contributors: Pyo
+
 0.3.0 (2021-01-29)
 ------------------
 * Changed code for new ROS 2 seminar
