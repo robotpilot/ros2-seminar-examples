@@ -1,20 +1,27 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>topic_service_action_rclcpp_example</name>
+  <name>rqt_example</name>
   <version>0.4.0</version>
-  <description>ROS 2 rclcpp example package for the topic, service, action</description>
+  <description>ROS 2 example for RQt plugin</description>
   <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
-  <license>Apache License 2.0</license>
+  <license>Apache 2.0</license>
   <author email="passionvirus@gmail.com">Pyo</author>
   <author email="routiful@gmail.com">Darby Lim</author>
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <depend>rclcpp</depend>
-  <depend>rclcpp_action</depend>
-  <depend>msg_srv_action_interface_example</depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>python_qt_binding</exec_depend>
+  <exec_depend>python3-catkin-pkg-modules</exec_depend>
+  <exec_depend>qt_gui_py_common</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>rqt_gui</exec_depend>
+  <exec_depend>rqt_gui_py</exec_depend>
+  <exec_depend>rqt_py_common</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <export>
     <build_type>ament_cmake</build_type>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
   </export>
 </package>

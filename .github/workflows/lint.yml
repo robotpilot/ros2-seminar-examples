@@ -12,16 +12,19 @@ jobs:
           linter: [cppcheck, cpplint, uncrustify, pep257, xmllint, flake8]
     steps:
     - uses: actions/checkout@v2
-    - uses: ros-tooling/setup-ros@0.1.0
-    - uses: ros-tooling/action-ros-lint@0.0.6
+    - uses: ros-tooling/setup-ros@master
+    - uses: ros-tooling/action-ros-lint@master
       with:
         distribution: foxy
         linter: ${{ matrix.linter }}
         package-name: |
-          time_rclcpp_example
+          logging_rclpy_example
+          msg_srv_action_interface_example
           my_first_ros_rclcpp_pkg
           my_first_ros_rclpy_pkg
-          msg_srv_action_interface_example
-          topic_service_action_rclpy_example
-          topic_service_action_rclcpp_example
           ros2env
+          rqt_example
+          time_rclcpp_example
+          time_rclpy_example
+          topic_service_action_rclcpp_example
+          topic_service_action_rclpy_example
