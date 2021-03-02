@@ -86,3 +86,8 @@ ros2 launch rqt_example turtlesim.launch.py
 ```
 $ ros2 run logging_rclpy_example logging_example
 ```
+
+## Run testbot_description package
+```
+$ ros2 launch testbot_description testbot.launch.py
+```
