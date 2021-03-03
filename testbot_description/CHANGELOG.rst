@@ -2,7 +2,7 @@
 Changelog for package testbot_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.4.0 (2021-03-03)
+0.5.0 (2021-03-04)
 ------------------
 * Added testbot_description package (ROS 2)
 * Contributors: Pyo

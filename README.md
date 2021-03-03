@@ -20,11 +20,6 @@ $ git clone https://github.com/robotpilot/ros2-seminar-examples.git
 $ cd ~/robot_ws && colcon build --symlink-install
 ```
 
-## Run time_rclcpp_example package
-```
-$ ros2 run time_rclcpp_example time_example
-```
-
 ## Run my_first_ros_rclpy_pkg package
 ```
 $ ros2 run my_first_ros_rclpy_pkg helloworld_subscriber
@@ -57,6 +52,21 @@ $ ros2 run topic_service_action_rclcpp_example checker -g 100.0
 $ ros2 launch topic_service_action_rclcpp_example arithmetic.launch.py
 ```
 
+## Run time_rclpy_example package
+```
+$ ros2 run time_rclpy_example time_example
+```
+
+## Run time_rclcpp_example package
+```
+$ ros2 run time_rclcpp_example time_example
+```
+
+## Run logging_rclpy_example package
+```
+$ ros2 run logging_rclpy_example logging_example
+```
+
 ## Run ros2env package
 ```
 $ ros2 env
@@ -78,13 +88,8 @@ RMW_IMPLEMENTATION = rmw_fastrtps_cpp
 
 ## Run rqt_example package
 ```
-ros2 run rqt_example rqt_example
-ros2 launch rqt_example turtlesim.launch.py
-```
-
-## Run logging_rclpy_example package
-```
-$ ros2 run logging_rclpy_example logging_example
+$ ros2 run rqt_example rqt_example
+$ ros2 launch rqt_example turtlesim.launch.py
 ```
 
 ## Run testbot_description package
