@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          linter: [cppcheck, cpplint, uncrustify, pep257, xmllint, flake8]
+          linter: [cppcheck, cpplint, uncrustify, pep257, flake8, xmllint]
     steps:
     - uses: actions/checkout@v2
     - uses: ros-tooling/setup-ros@master
