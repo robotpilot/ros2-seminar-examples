@@ -38,7 +38,7 @@ def generate_launch_description():
         executable='rviz2',
         arguments=['-d', rviz_display_config_file],
         output='screen')
-    
+
     ld.add_action(robot_state_publisher)
     ld.add_action(joint_state_publisher_gui)
     ld.add_action(rviz2)
