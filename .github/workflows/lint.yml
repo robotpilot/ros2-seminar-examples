@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          linter: [cppcheck, cpplint, uncrustify, pep257, xmllint, flake8]
+          linter: [cppcheck, cpplint, uncrustify, pep257, flake8, xmllint]
     steps:
     - uses: actions/checkout@v2
     - uses: ros-tooling/setup-ros@master
@@ -24,6 +24,7 @@ jobs:
           my_first_ros_rclpy_pkg
           ros2env
           rqt_example
+          testbot_description
           time_rclcpp_example
           time_rclpy_example
           topic_service_action_rclcpp_example

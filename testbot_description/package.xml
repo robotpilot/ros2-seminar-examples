@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>my_first_ros_rclcpp_pkg</name>
+  <name>testbot_description</name>
   <version>0.5.0</version>
-  <description>ROS 2 rclcpp basic package for the ROS 2 seminar</description>
+  <description>ROS 2 example for URDF</description>
   <maintainer email="passionvirus@gmail.com">Pyo</maintainer>
   <license>Apache License 2.0</license>
-  <author>Mikael Arguedas</author>
-  <author>Morgan Quigley</author>
-  <author email="jacob@openrobotics.org">Jacob Perron</author>
   <author email="passionvirus@gmail.com">Pyo</author>
+  <author email="routiful@gmail.com">Darby Lim</author>
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <depend>rclcpp</depend>
-  <depend>std_msgs</depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>urdf</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <export>
