@@ -1,15 +1,8 @@
-language:
-  - generic
-
-os:
-  - linux
-
-dist:
-  - xenial
-
-services:
-  - docker
-
+language: shell
+os: linux
+dist: bionic
+arch: amd64
+services: docker
 notifications:
   email:
     on_success: change
@@ -17,15 +10,12 @@ notifications:
     recipients:
       - passionvirus@gmail.com
       - routiful@gmail.com
-
 branches:
   only:
     - main
     - develop
-
 install:
   - git clone --quiet --depth 1 https://github.com/robotpilot/ros2ci.git .ros2ci
-
 jobs:
   include:
     - script: .ros2ci/travis.bash foxy
