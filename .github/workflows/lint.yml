@@ -1,6 +1,5 @@
 name: Lint
-on:
-  pull_request:
+on: pull_request
 jobs:
   ament_lint:
     runs-on: ubuntu-latest
@@ -9,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          linter: [cppcheck, cpplint, uncrustify, pep257, flake8, xmllint]
+          linter: [cppcheck, cpplint, uncrustify, flake8, pep257, lint_cmake, xmllint, copyright]
     steps:
     - uses: actions/checkout@v2
     - uses: ros-tooling/setup-ros@master
