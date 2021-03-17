@@ -1,11 +1,11 @@
 name: Lint
-
 on:
   pull_request:
-
 jobs:
   ament_lint:
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:bionic
     strategy:
       fail-fast: false
       matrix:
