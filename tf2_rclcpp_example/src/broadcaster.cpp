@@ -18,94 +18,87 @@ using namespace std::chrono_literals;
 
 Arm::Arm()
 : rclcpp::Node("arm"),
-  move_flag_(true)
+  move_(true)
 {
   RCLCPP_INFO(this->get_logger(), "Move Arm!");
-  node_ = std::shared_ptr<::rclcpp::Node>(this, [](::rclcpp::Node *) {});
-  tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(node_);
+  tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
-  auto flag_callback =
+  auto set_move =
     [this](const std::shared_ptr<std_srvs::srv::SetBool::Request> request,
       std::shared_ptr<std_srvs::srv::SetBool::Response> response) -> void
     {
-      move_flag_ = request->data;
+      move_ = request->data;
 
-      if (request->data)
-      {
+      if (request->data) {
         response->message = "Move Arm!";
-      }
-      else
-      {
+      } else {
         response->message = "Stop Arm!";
       }
     };
-  srv_ = create_service<std_srvs::srv::SetBool>("state", flag_callback);
+  move_service_server_ = create_service<std_srvs::srv::SetBool>("move", set_move);
 
   auto broadcast =
     [this]() -> void
     {
-      static float rad = 0.0;
+      static double rad = 0.0;
 
-      tf_stamped_.clear();
+      tf_stamped_list_.clear();
 
-      geometry_msgs::msg::TransformStamped transform_stamped;
+      geometry_msgs::msg::TransformStamped tf_stamped;
 
-      transform_stamped.header.stamp = this->now();
-      transform_stamped.header.frame_id = "world";
-      transform_stamped.child_frame_id = "pan";
-      transform_stamped.transform.translation.x = 0.0;
-      transform_stamped.transform.translation.y = 0.0;
-      transform_stamped.transform.translation.z = 0.0;
+      tf_stamped.header.stamp = this->now();
+      tf_stamped.header.frame_id = "world";
+      tf_stamped.child_frame_id = "pan";
+      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
 
       tf2::Quaternion quaternion;
       quaternion.setRPY(0, 0, 2 * sin(rad));
 
-      transform_stamped.transform.rotation.x = quaternion.x();
-      transform_stamped.transform.rotation.y = quaternion.y();
-      transform_stamped.transform.rotation.z = quaternion.z();
-      transform_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
 
-      tf_stamped_.push_back(transform_stamped);
+      tf_stamped_list_.push_back(tf_stamped);
 
-      transform_stamped.header.frame_id = "pan";
-      transform_stamped.child_frame_id = "tilt";
-      transform_stamped.transform.translation.x = 0.0;
-      transform_stamped.transform.translation.y = 0.0;
-      transform_stamped.transform.translation.z = 0.3;
+      tf_stamped.header.frame_id = "pan";
+      tf_stamped.child_frame_id = "tilt";
+      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.3;
 
       quaternion.setRPY(0, 2 * sin(rad), 0);
 
-      transform_stamped.transform.rotation.x = quaternion.x();
-      transform_stamped.transform.rotation.y = quaternion.y();
-      transform_stamped.transform.rotation.z = quaternion.z();
-      transform_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
 
-      tf_stamped_.push_back(transform_stamped);
+      tf_stamped_list_.push_back(tf_stamped);
 
-      transform_stamped.header.frame_id = "tilt";
-      transform_stamped.child_frame_id = "end-effector";
-      transform_stamped.transform.translation.x = 0.0;
-      transform_stamped.transform.translation.y = 0.0;
-      transform_stamped.transform.translation.z = 0.1;
+      tf_stamped.header.frame_id = "tilt";
+      tf_stamped.child_frame_id = "end-effector";
+      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.1;
 
       quaternion.setRPY(0, 0, 0);
 
-      transform_stamped.transform.rotation.x = quaternion.x();
-      transform_stamped.transform.rotation.y = quaternion.y();
-      transform_stamped.transform.rotation.z = quaternion.z();
-      transform_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
 
-      tf_stamped_.push_back(transform_stamped);
+      tf_stamped_list_.push_back(tf_stamped);
 
-      tf_broadcaster_->sendTransform(tf_stamped_);
+      tf_broadcaster_->sendTransform(tf_stamped_list_);
 
-      if (move_flag_) {
-        rad = rad + 0.01;
-      } else {
-        rad = rad;
+      if (move_) {
+        rad += 0.01;
       }
     };
-
   timer_ = this->create_wall_timer(10ms, broadcast);
 }
 

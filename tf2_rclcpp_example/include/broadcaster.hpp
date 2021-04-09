@@ -31,15 +31,14 @@ public:
   explicit Arm();
 
 private:
-  rclcpp::Node::SharedPtr node_;
   rclcpp::TimerBase::SharedPtr timer_;
 
   std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
-  std::vector<geometry_msgs::msg::TransformStamped> tf_stamped_;
+  std::vector<geometry_msgs::msg::TransformStamped> tf_stamped_list_;
 
-  rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr srv_;
+  rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr move_service_server_;
 
-  bool move_flag_;
+  bool move_;
 };
 #endif // TF2_RCLCPP_EXAMPLE__BROADCASTER_HPP_
 
