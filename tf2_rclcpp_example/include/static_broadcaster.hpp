@@ -27,9 +27,6 @@ class Base : public rclcpp::Node
   explicit Base();
 
  private:
-  rclcpp::Node::SharedPtr node_;
-  rclcpp::TimerBase::SharedPtr timer_;
-
-  std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
+  std::unique_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
 };
 #endif // TF2_RCLCPP_EXAMPLE__STATIC_BROADCASTER_HPP_

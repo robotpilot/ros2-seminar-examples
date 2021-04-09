@@ -20,33 +20,26 @@ Base::Base()
 : rclcpp::Node("base")
 {
   RCLCPP_INFO(this->get_logger(), "Make static tf (world->base)");
-  node_ = std::shared_ptr<::rclcpp::Node>(this, [](::rclcpp::Node *) {});
-  static_tf_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(node_);
+  static_tf_broadcaster_ = std::make_unique<tf2_ros::StaticTransformBroadcaster>(this);
 
-  auto static_broadcast =
-    [this]() -> void
-    {
-      geometry_msgs::msg::TransformStamped transform_stamped;
+  geometry_msgs::msg::TransformStamped tf_stamped;
 
-      transform_stamped.header.stamp = this->now();
-      transform_stamped.header.frame_id = "world";
-      transform_stamped.child_frame_id = "base";
-      transform_stamped.transform.translation.x = 0.0;
-      transform_stamped.transform.translation.y = 0.0;
-      transform_stamped.transform.translation.z = 3.0;
+  tf_stamped.header.stamp = this->now();
+  tf_stamped.header.frame_id = "world";
+  tf_stamped.child_frame_id = "base";
+  tf_stamped.transform.translation.x = 0.0;
+  tf_stamped.transform.translation.y = 0.3;
+  tf_stamped.transform.translation.z = 0.3;
 
-      tf2::Quaternion q;
-      q.setRPY(0, 0, 1.57);
+  tf2::Quaternion q;
+  q.setRPY(0, 0, 1.57);
 
-      transform_stamped.transform.rotation.x = q.x();
-      transform_stamped.transform.rotation.y = q.y();
-      transform_stamped.transform.rotation.z = q.z();
-      transform_stamped.transform.rotation.w = q.w();
+  tf_stamped.transform.rotation.x = q.x();
+  tf_stamped.transform.rotation.y = q.y();
+  tf_stamped.transform.rotation.z = q.z();
+  tf_stamped.transform.rotation.w = q.w();
 
-      static_tf_broadcaster_->sendTransform(transform_stamped);
-    };
-
-  timer_ = this->create_wall_timer(10ms, static_broadcast);
+  static_tf_broadcaster_->sendTransform(tf_stamped);
 }
 
 int main(int argc, char * argv[])
