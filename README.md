@@ -100,11 +100,11 @@ $ ros2 launch rqt_example turtlesim.launch.py
 $ ros2 launch testbot_description testbot.launch.py
 ```
 
-# ROS tf2_rclcpp_example package
+## ROS tf2_rclpy_example package
 ```bash
-$ ros2 run tf2_rclcpp_example broadcaster
-$ ros2 run tf2_rclcpp_example listener
-$ ros2 run tf2_rclcpp_example static_broadcaster
+$ ros2 run tf2_rclpy_example broadcaster
+$ ros2 run tf2_rclpy_example listener
+$ ros2 run tf2_rclpy_example static_broadcaster
 ```
 
 ```bash
@@ -115,11 +115,11 @@ $ rviz2 -d ${COLCON_WORKSPACE}/src/ros2-seminar-examples/tf2_rclcpp_example/rviz
 $ ros2 service call state std_srvs/srv/SetBool "data: false"
 ```
 
-# ROS tf2_rclpy_example package
+## ROS tf2_rclcpp_example package
 ```bash
-$ ros2 run tf2_rclpy_example broadcaster
-$ ros2 run tf2_rclpy_example listener
-$ ros2 run tf2_rclpy_example static_broadcaster
+$ ros2 run tf2_rclcpp_example broadcaster
+$ ros2 run tf2_rclcpp_example listener
+$ ros2 run tf2_rclcpp_example static_broadcaster
 ```
 
 ```bash
