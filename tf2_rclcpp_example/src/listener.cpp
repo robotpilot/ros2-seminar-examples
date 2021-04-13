@@ -29,7 +29,7 @@ Listener::Listener()
 
       try
       {
-        tf_world_pan = tf_buffer_.lookupTransform("world", "pan", tf2::timeFromSec(0));
+        tf_world_pan = tf_buffer_.lookupTransform("pan", "world", tf2::timeFromSec(0));
 
         tf2::Quaternion quaternion(
             tf_world_pan.transform.rotation.x,
@@ -51,7 +51,7 @@ Listener::Listener()
           pitch * RAD_TO_DEG,
           yaw * RAD_TO_DEG);
 
-        tf_pan_world = tf_buffer_.lookupTransform("pan", "world", tf2::timeFromSec(0));
+        tf_pan_world = tf_buffer_.lookupTransform("world", "pan", tf2::timeFromSec(0));
 
         tf2::Transform tf_inverse;
         tf2::fromMsg(tf_pan_world.transform, tf_inverse);
