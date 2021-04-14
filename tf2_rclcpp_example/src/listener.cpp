@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <memory>
+
 #include "listener.hpp"
 
 using namespace std::chrono_literals;
@@ -27,8 +29,7 @@ Listener::Listener()
       geometry_msgs::msg::TransformStamped tf_world_pan;
       geometry_msgs::msg::TransformStamped tf_pan_world;
 
-      try
-      {
+      try {
         tf_world_pan = tf_buffer_.lookupTransform("pan", "world", tf2::timeFromSec(0));
 
         tf2::Quaternion quaternion(
@@ -70,9 +71,7 @@ Listener::Listener()
           roll * RAD_TO_DEG,
           pitch * RAD_TO_DEG,
           yaw * RAD_TO_DEG);
-      }
-      catch (tf2::TransformException &ex)
-      {
+      } catch (tf2::TransformException &ex) {
         RCLCPP_WARN(this->get_logger(), "%s", ex.what());
         rclcpp::sleep_for(1s);
       }

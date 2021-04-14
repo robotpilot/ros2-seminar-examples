@@ -12,21 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef TF2_RCLCPP_EXAMPLE__STATIC_BROADCASTER_HPP_
-#define TF2_RCLCPP_EXAMPLE__STATIC_BROADCASTER_HPP_
+#ifndef STATIC_BROADCASTER_HPP_
+#define STATIC_BROADCASTER_HPP_
 
-#include <geometry_msgs/msg/transform_stamped.hpp>
-#include <rclcpp/rclcpp.hpp>
-#include <tf2/LinearMath/Quaternion.h>
-#include <tf2_ros/static_transform_broadcaster.h>
+#include <memory>
+
+#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "tf2/LinearMath/Quaternion.h"
+#include "tf2_ros/static_transform_broadcaster.h"
 
 
 class Base : public rclcpp::Node
 {
  public:
-  explicit Base();
+  Base();
 
  private:
   std::unique_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
 };
-#endif // TF2_RCLCPP_EXAMPLE__STATIC_BROADCASTER_HPP_
+#endif  // STATIC_BROADCASTER_HPP_
