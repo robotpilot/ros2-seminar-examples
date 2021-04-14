@@ -112,7 +112,7 @@ $ rviz2 -d ${COLCON_WORKSPACE}/src/ros2-seminar-examples/tf2_rclcpp_example/rviz
 ```
 
 ```bash
-$ ros2 service call state std_srvs/srv/SetBool "data: false"
+$ ros2 service call move std_srvs/srv/SetBool "data: false"
 ```
 
 ## ROS tf2_rclcpp_example package
@@ -127,5 +127,5 @@ $ rviz2 -d ${COLCON_WORKSPACE}/src/ros2-seminar-examples/tf2_rclcpp_example/rviz
 ```
 
 ```bash
-$ ros2 service call state std_srvs/srv/SetBool "data: false"
+$ ros2 service call move std_srvs/srv/SetBool "data: false"
 ```
