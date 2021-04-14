@@ -42,4 +42,3 @@ private:
   bool move_;
 };
 #endif  // BROADCASTER_HPP_
-

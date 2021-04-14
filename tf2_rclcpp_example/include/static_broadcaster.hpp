@@ -25,10 +25,10 @@
 
 class Base : public rclcpp::Node
 {
- public:
+public:
   Base();
 
- private:
+private:
   std::unique_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
 };
 #endif  // STATIC_BROADCASTER_HPP_
