@@ -12,31 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef TF2_RCLCPP_EXAMPLE__LISTENER_HPP_
-#define TF2_RCLCPP_EXAMPLE__LISTENER_HPP_
+#ifndef LISTENER_HPP_
+#define LISTENER_HPP_
 
 #include <cmath>
+#include <memory>
 #include <string>
 
-#include <geometry_msgs/msg/transform_stamped.hpp>
-#include <rclcpp/rclcpp.hpp>
-#include <tf2/LinearMath/Transform.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include <tf2_ros/transform_listener.h>
+#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "tf2/LinearMath/Transform.h"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include "tf2_ros/transform_listener.h"
 
-#define RAD_TO_DEG 180/M_PI
-#define DEG_TO_RAD M_PI/180
+#define RAD_TO_DEG 180 / M_PI
+#define DEG_TO_RAD M_PI / 180
 
 
 class Listener : public rclcpp::Node
 {
- public:
-  explicit Listener();
+public:
+  Listener();
 
- private:
+private:
   rclcpp::TimerBase::SharedPtr timer_;
 
   tf2_ros::Buffer tf_buffer_;
   tf2_ros::TransformListener tf_listener_;
 };
-#endif // TF2_RCLCPP_EXAMPLE__LISTENER_HPP_
+#endif  // LISTENER_HPP_

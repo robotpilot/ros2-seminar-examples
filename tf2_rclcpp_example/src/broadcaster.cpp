@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <memory>
+
 #include "broadcaster.hpp"
 
 using namespace std::chrono_literals;

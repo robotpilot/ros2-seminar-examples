@@ -14,8 +14,8 @@
 
 import math
 
-import rclpy
 from geometry_msgs.msg import TransformStamped
+import rclpy
 from rclpy.node import Node
 from std_srvs.srv import SetBool
 from tf2_rclpy_example.conversions import euler_to_quaternion
@@ -23,6 +23,7 @@ from tf2_ros.transform_broadcaster import TransformBroadcaster
 
 
 class Arm(Node):
+
     def __init__(self):
         super().__init__('arm')
 
@@ -108,6 +109,7 @@ class Arm(Node):
 
         if self.move is True:
             self.rad += 0.01
+
 
 def main():
     rclpy.init()

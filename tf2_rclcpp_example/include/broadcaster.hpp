@@ -12,23 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef TF2_RCLCPP_EXAMPLE__BROADCASTER_HPP_
-#define TF2_RCLCPP_EXAMPLE__BROADCASTER_HPP_
+#ifndef BROADCASTER_HPP_
+#define BROADCASTER_HPP_
 
 #include <cmath>
+#include <memory>
 #include <vector>
 
-#include <geometry_msgs/msg/transform_stamped.hpp>
-#include <rclcpp/rclcpp.hpp>
-#include <std_srvs/srv/set_bool.hpp>
-#include <tf2/LinearMath/Quaternion.h>
-#include <tf2_ros/transform_broadcaster.h>
+#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "std_srvs/srv/set_bool.hpp"
+#include "tf2/LinearMath/Quaternion.h"
+#include "tf2_ros/transform_broadcaster.h"
 
 
 class Arm : public rclcpp::Node
 {
 public:
-  explicit Arm();
+  Arm();
 
 private:
   rclcpp::TimerBase::SharedPtr timer_;
@@ -40,5 +41,4 @@ private:
 
   bool move_;
 };
-#endif // TF2_RCLCPP_EXAMPLE__BROADCASTER_HPP_
-
+#endif  // BROADCASTER_HPP_
