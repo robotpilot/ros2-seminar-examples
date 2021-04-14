@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import math
-
 import rclpy
 from rclpy.node import Node
 import rclpy.time
@@ -23,6 +21,7 @@ from tf2_ros.transform_listener import TransformListener
 
 
 class Listener(Node):
+
     def __init__(self):
         super().__init__('tf2_listener')
 
