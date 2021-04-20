@@ -17,26 +17,26 @@
 - [ROS 2 Foxy Fitzroy - Patch Release 4](https://github.com/ros2/ros2/releases/tag/release-foxy-20201211)
 
 ## Build
-```
+```bash
 $ cd ~/robot_ws/src
 $ git clone https://github.com/robotpilot/ros2-seminar-examples.git
 $ cd ~/robot_ws && colcon build --symlink-install
 ```
 
 ## Run my_first_ros_rclpy_pkg package
-```
+```bash
 $ ros2 run my_first_ros_rclpy_pkg helloworld_subscriber
 $ ros2 run my_first_ros_rclpy_pkg helloworld_publisher
 ```
 
 ## Run my_first_ros_rclcpp_pkg package
-```
+```bash
 $ ros2 run my_first_ros_rclcpp_pkg helloworld_subscriber
 $ ros2 run my_first_ros_rclcpp_pkg helloworld_publisher
 ```
 
 ## Run topic_service_action_rclpy_example package
-```
+```bash
 $ ros2 run topic_service_action_rclpy_example argument
 $ ros2 run topic_service_action_rclpy_example operator
 $ ros2 run topic_service_action_rclpy_example calculator
@@ -46,7 +46,7 @@ $ ros2 launch topic_service_action_rclpy_example arithmetic.launch.py
 ```
 
 ## Run topic_service_action_rclcpp_example package
-```
+```bash
 $ ros2 run topic_service_action_rclcpp_example argument
 $ ros2 run topic_service_action_rclcpp_example operator
 $ ros2 run topic_service_action_rclcpp_example calculator
@@ -56,22 +56,22 @@ $ ros2 launch topic_service_action_rclcpp_example arithmetic.launch.py
 ```
 
 ## Run time_rclpy_example package
-```
+```bash
 $ ros2 run time_rclpy_example time_example
 ```
 
 ## Run time_rclcpp_example package
-```
+```bash
 $ ros2 run time_rclcpp_example time_example
 ```
 
 ## Run logging_rclpy_example package
-```
+```bash
 $ ros2 run logging_rclpy_example logging_example
 ```
 
 ## Run ros2env package
-```
+```bash
 $ ros2 env
 usage: ros2 env [-h] Call `ros2 env <command> -h` for more detailed usage. ...
 Various env related sub-commands
@@ -90,13 +90,13 @@ RMW_IMPLEMENTATION = rmw_fastrtps_cpp
 ```
 
 ## Run rqt_example package
-```
+```bash
 $ ros2 run rqt_example rqt_example
 $ ros2 launch rqt_example turtlesim.launch.py
 ```
 
 ## Run testbot_description package
-```
+```bash
 $ ros2 launch testbot_description testbot.launch.py
 ```
 
