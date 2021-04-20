@@ -94,7 +94,7 @@ TEST_F(TestCalculator, not_an_operator)
   float result = 0.0;
 
   result = this->calculator_->calculate_given_formula(10.0f, 5.0f, 0);
-  EXPECT_EQ(result, 2.0f) << "Not an operator";
+  EXPECT_EQ(result, 0.0f) << "Not an operator";
 }
 
 TEST(TestString, c_string)
@@ -105,7 +105,7 @@ TEST(TestString, c_string)
   const char * cba = "cba";
   const char * CBA = "CBA";
 
-  EXPECT_EQ(abc.c_str(), "abc");
+  EXPECT_NE(abc.c_str(), "abc");
 
   EXPECT_STREQ(abc.c_str(), "abc");
   EXPECT_STRCASEEQ(abc.c_str(), ABC.c_str());
