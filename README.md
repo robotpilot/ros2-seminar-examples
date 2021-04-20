@@ -100,7 +100,7 @@ $ ros2 launch rqt_example turtlesim.launch.py
 $ ros2 launch testbot_description testbot.launch.py
 ```
 
-## ROS tf2_rclpy_example package
+## Run tf2_rclpy_example package
 ```bash
 $ ros2 run tf2_rclpy_example broadcaster
 $ ros2 run tf2_rclpy_example listener
@@ -115,7 +115,7 @@ $ rviz2 -d ${COLCON_WORKSPACE}/src/ros2-seminar-examples/tf2_rclcpp_example/rviz
 $ ros2 service call move std_srvs/srv/SetBool "data: false"
 ```
 
-## ROS tf2_rclcpp_example package
+## Run tf2_rclcpp_example package
 ```bash
 $ ros2 run tf2_rclcpp_example broadcaster
 $ ros2 run tf2_rclcpp_example listener
@@ -128,4 +128,11 @@ $ rviz2 -d ${COLCON_WORKSPACE}/src/ros2-seminar-examples/tf2_rclcpp_example/rviz
 
 ```bash
 $ ros2 service call move std_srvs/srv/SetBool "data: false"
+```
+
+## Run colcon_test
+```bash
+$ colcon build --symlink-install
+$ mkdir ~/robot_ws/test_result
+$ colcon test --test-result-base ./test_result/
 ```
