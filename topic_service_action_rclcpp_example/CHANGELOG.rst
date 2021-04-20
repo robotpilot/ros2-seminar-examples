@@ -4,6 +4,8 @@ Changelog for package topic_service_action_rclcpp_example
 
 0.6.0 (2021-04-20)
 ------------------
+* Added test code using gtest
+* Contributors: Darby Lim
 
 0.5.0 (2021-03-04)
 ------------------
