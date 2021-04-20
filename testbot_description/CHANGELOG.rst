@@ -2,6 +2,9 @@
 Changelog for package testbot_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.0 (2021-04-20)
+------------------
+
 0.5.0 (2021-03-04)
 ------------------
 * Added testbot_description package (ROS 2)

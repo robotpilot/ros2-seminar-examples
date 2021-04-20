@@ -7,7 +7,6 @@ project(topic_service_action_rclcpp_example)
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
-
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
@@ -52,6 +51,14 @@ ament_target_dependencies(operator
   rclcpp
 )
 
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+
+  find_package(ament_cmake_gtest REQUIRED)
+  add_subdirectory(test)
+endif()
+
 install(TARGETS
   argument
   calculator
@@ -63,11 +70,6 @@ install(TARGETS
 install(DIRECTORY launch param
   DESTINATION share/${PROJECT_NAME}
 )
-
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
-endif()
 
 ################################################################################
 # Find and load build settings from external packages

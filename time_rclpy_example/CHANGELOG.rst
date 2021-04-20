@@ -2,6 +2,11 @@
 Changelog for package time_rclpy_example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.0 (2021-04-20)
+------------------
+* Modified script_dir and install_scripts of setup.cfg file
+* Contributors: Darby Lim
+
 0.5.0 (2021-03-04)
 ------------------
 
