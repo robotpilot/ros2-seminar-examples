@@ -41,9 +41,9 @@ public:
   explicit Calculator(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~Calculator();
 
-private:
   float calculate_given_formula(const float & a, const float & b, const int8_t & operators);
 
+private:
   rclcpp_action::GoalResponse handle_goal(
     const rclcpp_action::GoalUUID & uuid,
     std::shared_ptr<const ArithmeticChecker::Goal> goal);
