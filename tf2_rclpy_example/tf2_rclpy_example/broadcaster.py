@@ -30,7 +30,7 @@ class Arm(Node):
         self.get_logger().info('Move Arm!')
         self.move = True
         self.rad = 0.0
-        self.tf_broadcater = TransformBroadcaster(self)
+        self.tf_broadcaster = TransformBroadcaster(self)
 
         self.move_service_server = self.create_service(
             SetBool,
@@ -105,7 +105,7 @@ class Arm(Node):
 
         tf_stamped_list.append(tf_stamped)
 
-        self.tf_broadcater.sendTransform(tf_stamped_list)
+        self.tf_broadcaster.sendTransform(tf_stamped_list)
 
         if self.move is True:
             self.rad += 0.01
