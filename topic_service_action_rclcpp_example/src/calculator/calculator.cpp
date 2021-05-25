@@ -55,12 +55,12 @@ Calculator::Calculator(const rclcpp::NodeOptions & node_options)
 
       RCLCPP_INFO(
         this->get_logger(),
-        "Subscribed at: sec %ld nanosec %ld",
+        "Timestamp of the message: sec %ld nanosec %ld",
         msg->stamp.sec,
         msg->stamp.nanosec);
 
-      RCLCPP_INFO(this->get_logger(), "Subscribed argument a : %.2f", argument_a_);
-      RCLCPP_INFO(this->get_logger(), "Subscribed argument b : %.2f", argument_b_);
+      RCLCPP_INFO(this->get_logger(), "Subscribed argument a: %.2f", argument_a_);
+      RCLCPP_INFO(this->get_logger(), "Subscribed argument b: %.2f", argument_b_);
     }
   );
 
